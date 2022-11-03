@@ -8,12 +8,12 @@ class UserNav extends Component {
         this.state = {
             userId: 8266808,
             userName: "skill issue",
-            userRating: 0,
+            userRating: 19920,
         };
     }
 
     render() {
-        const backgroundURL = `url('./users/${this.state.userId}.jpg')`
+        const backgroundURL = `url('./users/${this.state.userId}.png')`
         const avatarURL = `https://a.ppy.sh/${this.state.userId}`;
         return (
             <div className="userNav">

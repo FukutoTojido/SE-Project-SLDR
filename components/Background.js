@@ -8,7 +8,7 @@ class Background extends Component {
         };
     }
     render() {
-        const backgroundURL = this.state.userId ? `url("./users/${this.state.userId}.jpg")` : "url()";
+        const backgroundURL = this.state.userId ? `url("./users/${this.state.userId}.png")` : "url()";
         return (
             <div className="background">
                 <style jsx>
@@ -39,6 +39,11 @@ class Background extends Component {
                                     hsla(0, 0%, 0%, 0) 300px
                                 ),
                                 ${backgroundURL};
+
+                            background-repeat: no-repeat;
+                            background-attachment: fixed;
+                            background-size: cover;
+
                             filter: blur(2px);
                             z-index: 0;
                         }

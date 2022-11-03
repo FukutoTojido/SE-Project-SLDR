@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@bbob/core": "^2.8.1",
+    "@bbob/html": "^2.8.1",
+    "@bbob/preset-html5": "^2.8.1",
     "framer-motion": "^7.6.4",
     "next": "13.0.1",
     "react": "18.2.0",

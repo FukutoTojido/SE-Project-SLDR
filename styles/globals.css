@@ -1,11 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
+@font-face {
+    font-family: Torus;
+    src: url("https://osu.ppy.sh/assets/fonts/Torus-Regular.734ed3ae.otf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Torus;
+    src: url("https://osu.ppy.sh/assets/fonts/Torus-SemiBold.d263d500.otf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Torus;
+    src: url("https://osu.ppy.sh/assets/fonts/Torus-Bold.c233ce17.otf");
+    font-weight: 700;
+}
+
 html,
 body {
     min-height: 100vh;
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Quicksand, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    font-family: -apple-system, BlinkMacSystemFont, Torus, Quicksand, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
         sans-serif;
     background-color: #121212;
 

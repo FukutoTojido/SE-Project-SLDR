@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1065" height="355" viewBox="0 0 1065 355">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-width: 30px;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        font-size: 100px;
+        font-family: "Reross Quadratic";
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M225.685,225.7a100.008,100.008,0,1,1,0-141.438"/>
+  <path class="cls-2" d="M154.971,139.979H374.98a15,15,0,0,1,15,15v0a15,15,0,0,1-15,15H154.971a15,15,0,0,1-15-15v0A15,15,0,0,1,154.971,139.979Z"/>
+  <path id="Rectangle_1_copy" data-name="Rectangle 1 copy" class="cls-2" d="M789.992,139.979H1010a15,15,0,0,1,15,15v0a15,15,0,0,1-15,15H789.992a15,15,0,0,1-15-15v0A15,15,0,0,1,789.992,139.979Z"/>
+  <path class="cls-2" d="M312.976,194.986h80a20,20,0,0,1,20,20V295a20,20,0,0,1-20,20h-80a20,20,0,0,1-20-20V214.986A20,20,0,0,1,312.976,194.986Z"/>
+  <path id="Rectangle_2_copy" data-name="Rectangle 2 copy" class="cls-2" d="M467.981,194.986h80a20,20,0,0,1,20,20V295a20,20,0,0,1-20,20h-80a20,20,0,0,1-20-20V214.986A20,20,0,0,1,467.981,194.986Z"/>
+  <path id="Rectangle_2_copy_2" data-name="Rectangle 2 copy 2" class="cls-2" d="M622.986,194.986h80a20,20,0,0,1,20,20V295a20,20,0,0,1-20,20h-80a20,20,0,0,1-20-20V214.986A20,20,0,0,1,622.986,194.986Z"/>
+  <path id="Rectangle_2_copy_3" data-name="Rectangle 2 copy 3" class="cls-2" d="M777.991,194.986h80a20,20,0,0,1,20,20V295a20,20,0,0,1-20,20h-80a20,20,0,0,1-20-20V214.986A20,20,0,0,1,777.991,194.986Z"/>
+  <text id="SL::DR" class="cls-3" x="405" y="170.4">SL::DR</text>
+</svg>
