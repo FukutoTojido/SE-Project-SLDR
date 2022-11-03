@@ -13,14 +13,41 @@ class UserNav extends Component {
     }
 
     render() {
+        const backgroundURL = `url('./users/${this.state.userId}.jpg')`
         const avatarURL = `https://a.ppy.sh/${this.state.userId}`;
         return (
-            <div className={styles.userNav}>
+            <div className="userNav">
                 <img className={styles.userAvatar} src={avatarURL} alt="User Avatar" />
                 <div className={styles.userText}>
                     <div className={styles.userName}>{this.state.userName}</div>
                     <div className={styles.userRating}>rating: {this.state.userRating}</div>
                 </div>
+                <style jsx>{`
+                    .userNav {
+                        position: absolute;
+                        right: 0;
+                        bottom: 25px;
+
+                        width: 150px;
+                        height: 50px;
+                        padding: 10px;
+
+                        display: flex;
+                        gap: 9px;
+                        align-items: center;
+
+                        background-image: linear-gradient(0deg, rgb(0 0 0 /.8), rgba(0 0 0 /.8)), ${backgroundURL};
+                        background-size: cover;
+                        border-radius: 10px;
+
+                        transition: ease-in-out 100ms;
+                    }
+
+                    .userNav:hover {
+                        background-image: linear-gradient(0deg, rgb(0 0 0 /.5), rgba(0 0 0 /.5)), ${backgroundURL};
+                        outline: solid 3px white;
+                    }
+                `}</style>
             </div>
         );
     }
@@ -32,7 +59,7 @@ class Header extends Component {
         this.state = {
             authorizedStatus: {
                 isAuthorized: true,
-                userId: 8266808
+                userId: 8266808,
             },
         };
     }
