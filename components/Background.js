@@ -39,7 +39,7 @@ class Background extends Component {
                                     hsla(0, 0%, 0%, 0) 300px
                                 ),
                                 ${backgroundURL};
-
+                            filter: blur(2px);
                             z-index: 0;
                         }
                     `}

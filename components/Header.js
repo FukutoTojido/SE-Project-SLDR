@@ -44,8 +44,9 @@ class UserNav extends Component {
                     }
 
                     .userNav:hover {
-                        background-image: linear-gradient(0deg, rgb(0 0 0 /.5), rgba(0 0 0 /.5)), ${backgroundURL};
+                        background-image: linear-gradient(90deg, rgb(0 0 0) 30%, rgba(0 0 0 /.5)), ${backgroundURL};
                         outline: solid 3px white;
+                        transition: ease-in-out 100ms;
                     }
                 `}</style>
             </div>
