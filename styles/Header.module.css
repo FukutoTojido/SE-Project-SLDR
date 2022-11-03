@@ -1,0 +1,96 @@
+.headerContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+
+    width: 1000px;
+    height: 100px;
+
+    display: flex;
+}
+
+.headerLogo {
+    position: absolute;
+    bottom: 30px;
+
+    aspect-ratio: 3 / 1;
+    width: 140px;
+
+    background-image: url("../public/static/Logo.png");
+    background-size: cover;
+}
+
+.headerNav {
+    position: absolute;
+    bottom: 30px;
+    left: 170px;
+
+    display: flex;
+    gap: 25px;
+}
+
+.navSelection {
+    position: relative;
+    padding: 10px 0;
+}
+
+.navSelection::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    margin-inline: auto;
+
+    width: 0%;
+    height: 3px;
+
+    background-color: white;
+    border-radius: 3px;
+    transition: ease-in-out 100ms;
+}
+
+.navSelection:hover::after {
+    width: 100%;    
+}
+
+.userNav {
+    position: absolute;
+    right: 0;
+    bottom: 25px;
+
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+
+    display: flex;
+    gap: 9px;
+    align-items: center;
+
+    background-color: #242424;
+    border-radius: 10px;
+
+    transition: ease-in-out 100ms;
+}
+
+.userNav:hover {
+    outline: solid 2px white;
+}
+
+.userAvatar {
+    aspect-ratio: 1 / 1;
+    width: 30px;
+
+    border-radius: 15px;
+}
+
+.userName {
+    font-size: 12px;
+    font-weight: 700;
+}
+.userRating {
+    font-size: 10px;
+}
