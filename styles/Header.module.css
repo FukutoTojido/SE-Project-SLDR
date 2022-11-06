@@ -9,6 +9,7 @@
     height: 100px;
 
     display: flex;
+    z-index: 1;
 }
 
 .headerLogo {

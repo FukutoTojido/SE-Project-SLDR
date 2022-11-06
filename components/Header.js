@@ -13,7 +13,7 @@ class UserNav extends Component {
     }
 
     render() {
-        const backgroundURL = `url('./users/${this.state.userId}.png')`
+        const backgroundURL = `url('/static/users/${this.state.userId}.png')`
         const avatarURL = `https://a.ppy.sh/${this.state.userId}`;
         return (
             <div className="userNav">
@@ -81,7 +81,7 @@ class Header extends Component {
                     </Link>
                 </div>
                 {this.state.authorizedStatus.isAuthorized ? (
-                    <Link href="/users">
+                    <Link href={`/users/${this.state.authorizedStatus.userId}`}>
                         <UserNav />
                     </Link>
                 ) : (

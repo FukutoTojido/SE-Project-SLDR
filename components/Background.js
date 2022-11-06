@@ -8,7 +8,7 @@ class Background extends Component {
         };
     }
     render() {
-        const backgroundURL = this.state.userId ? `url("./users/${this.state.userId}.png")` : "url()";
+        const backgroundURL = this.state.userId ? `url("/static/users/${this.state.userId}.png")` : "url()";
         return (
             <div className="background">
                 <style jsx>

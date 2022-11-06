@@ -23,7 +23,7 @@ export default function Custom404() {
         >
             <div className="container">
                 <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/error--v1.png" />
-                <div className="title">This shouldn't be possible</div>
+                <div className="title">YOU SHOULDN'T BE HERE</div>
                 404 - Site not found.
                 <style jsx>{`
                     .container {
