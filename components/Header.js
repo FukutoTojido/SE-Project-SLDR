@@ -13,7 +13,7 @@ class UserNav extends Component {
     }
 
     render() {
-        const backgroundURL = `url('/static/users/${this.state.userId}.png')`
+        const backgroundURL = `url('/static/users/${this.state.userId}.png')`;
         const avatarURL = `https://a.ppy.sh/${this.state.userId}`;
         return (
             <div className="userNav">
@@ -36,7 +36,7 @@ class UserNav extends Component {
                         gap: 9px;
                         align-items: center;
 
-                        background-image: linear-gradient(0deg, rgb(0 0 0 /.8), rgba(0 0 0 /.8)), ${backgroundURL};
+                        background-image: linear-gradient(0deg, rgb(0 0 0 /0.8), rgba(0 0 0 /0.8)), ${backgroundURL};
                         background-size: cover;
                         border-radius: 10px;
 
@@ -44,7 +44,7 @@ class UserNav extends Component {
                     }
 
                     .userNav:hover {
-                        background-image: linear-gradient(90deg, rgb(0 0 0) 30%, rgba(0 0 0 /.5)), ${backgroundURL};
+                        background-image: linear-gradient(90deg, rgb(0 0 0) 30%, rgba(0 0 0 /0.5)), ${backgroundURL};
                         outline: solid 3px white;
                         transition: ease-in-out 100ms;
                     }
@@ -85,9 +85,9 @@ class Header extends Component {
                         <UserNav />
                     </Link>
                 ) : (
-                    <Link href="/settings" className={styles.loginText}>
+                    <div className={styles.loginText}>
                         login
-                    </Link>
+                    </div>
                 )}
             </div>
         );

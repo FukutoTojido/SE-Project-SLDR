@@ -53,7 +53,7 @@ class UserInfo extends Component {
 
                             .userInfoContainer {
                                 width: 100%;
-                                height: 480px;
+                                height: 400px;
 
                                 background: ${backgroundURL};
                                 background-size: cover;

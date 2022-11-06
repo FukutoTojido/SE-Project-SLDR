@@ -212,12 +212,12 @@ const usersList = {
         },
         pinnedPlay: {
             mapInfo: {
-                mapId: 99283,
+                mapId: 6,
                 mapArtist: "positive MAD-crew",
                 mapTitle: "Mynarco Addiction",
                 mapCategory: "MASTER",
-                mapDifficulty: "14+",
-                mapCoverURL: "/static/maps/99283.jpg",
+                mapDifficulty: "13",
+                mapCoverURL: "/static/maps/6.png",
             },
             playInfo: {
                 rank: "SSS",

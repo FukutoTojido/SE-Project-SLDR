@@ -72,3 +72,24 @@
 .userRating {
     font-size: 10px;
 }
+
+.loginText {
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+
+    width: 100px;
+
+    border-radius: 30px;
+    text-align: center;
+    font-size: 13px;
+
+    background-color: #242424;
+    padding: 10px;
+
+    user-select: none;
+}
+
+.loginText:hover {
+    background-color: #363636;
+}
