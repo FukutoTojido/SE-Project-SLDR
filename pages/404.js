@@ -1,11 +1,6 @@
 // Inside the "pages/404.js" file
 import { motion } from "framer-motion";
-
-const variants = {
-    hidden: { opacity: 0, x: 0, y: 100 },
-    enter: { opacity: 1, x: 0, y: 0 },
-    exit: { opacity: 0, x: 0, y: -100 },
-};
+import { variants } from "./_app";
 
 export default function Custom404() {
     return (

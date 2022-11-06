@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import styles from "../styles/Home.module.css";
 import { motion } from "framer-motion";
-
-const variants = {
-    hidden: { opacity: 0, x: 0, y: 100 },
-    enter: { opacity: 1, x: 0, y: 0 },
-    exit: { opacity: 0, x: 0, y: -100 },
-};
+import { variants } from "./_app";
 
 class Home extends Component {
     constructor(props) {

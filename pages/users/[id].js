@@ -3,6 +3,7 @@ import React, { Component, useState, useEffect } from "react";
 import styles from "../../styles/Userpage.module.css";
 import { UserInfo, StatisticDetail, PinnedPlay, AboutMe, PlayHistory } from "../../components/UsersComponent";
 import { motion } from "framer-motion";
+import { variants } from "../_app";
 
 const usersList = {
     8266808: {
@@ -359,12 +360,6 @@ const usersList = {
             },
         ],
     },
-};
-
-const variants = {
-    hidden: { opacity: 0, x: 0, y: 100 },
-    enter: { opacity: 1, x: 0, y: 0 },
-    exit: { opacity: 0, x: 0, y: -100 },
 };
 
 class Label extends Component {

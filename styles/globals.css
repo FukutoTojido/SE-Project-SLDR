@@ -47,6 +47,8 @@ body {
 
     overflow-x: hidden;
     overflow-y: overlay;
+
+    -webkit-font-smoothing: antialiased;
 }
 
 a {

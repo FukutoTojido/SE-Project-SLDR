@@ -518,14 +518,15 @@ class AboutMe extends Component {
         return (
             <div className="container">
                 <Label label="About me" />
-                <div
-                    className="aboutMeContainer"
-                    dangerouslySetInnerHTML={{
-                        __html: processed
-                            .replaceAll("<img", "<img style='max-width: 100%; border-radius: 10px;'")
-                            .replaceAll(
-                                "<notice>",
-                                `<div 
+                <div className="aboutMeContainer">
+                    <div
+                        className="wrapper"
+                        dangerouslySetInnerHTML={{
+                            __html: processed
+                                .replaceAll("<img", "<img style='max-width: 100%; border-radius: 10px;'")
+                                .replaceAll(
+                                    "<notice>",
+                                    `<div 
                             style='
                                 background-color: #242424;
                                 padding: 20px;
@@ -534,19 +535,20 @@ class AboutMe extends Component {
                                 margin: 2px 0;
                             '
                             >`
-                            )
-                            .replaceAll("</notice>", "</div>")
-                            .replaceAll("<centre>", "<div style='text-align: center'>")
-                            .replaceAll("</centre>", "</div>")
-                            .replaceAll(
-                                `<size 150="150">`,
-                                `
+                                )
+                                .replaceAll("</notice>", "</div>")
+                                .replaceAll("<centre>", "<div style='text-align: center'>")
+                                .replaceAll("</centre>", "</div>")
+                                .replaceAll(
+                                    `<size 150="150">`,
+                                    `
                                 <div style="font-size: 20px">
                             `
-                            )
-                            .replaceAll(`</size>`, `</div>`),
-                    }}
-                ></div>
+                                )
+                                .replaceAll(`</size>`, `</div>`),
+                        }}
+                    ></div>
+                </div>
                 <style jsx>
                     {`
                         .container {
@@ -566,15 +568,22 @@ class AboutMe extends Component {
                             background-color: #151515;
                             border-radius: 20px;
 
-                            overflow: overlay;
-                            overflow-x: hidden;
-
                             font-size: 13px;
                             font-weight: 300;
                         }
 
                         .aboutMeContainer img {
                             width: 260px;
+                        }
+
+                        .wrapper {
+                            width: 100%;
+                            height: 100%;
+
+                            overflow: scroll;
+                            overflow-x: hidden;
+
+                            border-radius: 10px;
                         }
                     `}
                 </style>
@@ -642,6 +651,8 @@ class PlayContainer extends Component {
                             position: relative;
                             width: 100%;
                             height: 200px;
+
+                            margin: 3px;
 
                             border-radius: 20px;
                             background-image: linear-gradient(
@@ -875,9 +886,11 @@ class PlayHistory extends Component {
             <div className="container">
                 <Label label="Play History" />
                 <div className="playHistoryContainer">
-                    {this.props.playHistory.map((p, idx) => {
-                        return <PlayContainer playData={p} key={`play_${idx}`} />;
-                    })}
+                    <div className="wrapper">
+                        {this.props.playHistory.map((p, idx) => {
+                            return <PlayContainer playData={p} key={`play_${idx}`} />;
+                        })}
+                    </div>
                 </div>
                 <style jsx>{`
                     .container {
@@ -896,13 +909,19 @@ class PlayHistory extends Component {
                         border-radius: 20px;
 
                         padding: 30px;
+                    }
+
+                    .wrapper {
+                        width: 100%;
+                        height: 100%;
 
                         display: flex;
                         align-content: flex-start;
                         flex-wrap: wrap;
                         gap: 10px;
 
-                        overflow-y: overlay;
+                        overflow-y: scroll;
+                        border-radius: 20px;
                     }
                 `}</style>
             </div>
