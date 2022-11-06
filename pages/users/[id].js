@@ -4,6 +4,7 @@ import styles from "../../styles/Userpage.module.css";
 import { UserInfo, StatisticDetail, PinnedPlay, AboutMe, PlayHistory } from "../../components/UsersComponent";
 import { motion } from "framer-motion";
 import { variants } from "../_app";
+import Head from "next/head";
 
 const usersList = {
     8266808: {
@@ -412,86 +413,94 @@ const Userpage = () => {
     const id = router.query.id;
 
     const [userData, setUserData] = useState(undefined);
+    const [userId, setUserId] = useState(undefined);
 
     useEffect(() => {
         if (!router.isReady) return;
+        setUserId(router.query.id);
         setUserData(usersList[router.query.id]);
     });
 
-    return (
-        <>
-            <motion.main
-                initial="hidden"
-                animate="enter"
-                exit="exit"
-                variants={variants}
-                transition={{ type: "linear" }}
-                className="
+    if (userId !== undefined) {
+        if (Object.keys(usersList).includes(userId))
+            return (
+                <>
+                    <Head>
+                        <title>{`${userData.userInfo.userName} • Sl::dr Profile`}</title>
+                    </Head>
+                    <motion.main
+                        initial="hidden"
+                        animate="enter"
+                        exit="exit"
+                        variants={variants}
+                        transition={{ type: "linear" }}
+                        className="
                         flex flex-col items-start w-full pt-10
                         px-8 sm:px-16 md:px-36 lg:px-52 xl:px-80 2xl:px-96
                         pt-24 h-full
                     "
-            >
-                {userData !== undefined ? (
-                    <div className="App">
-                        <UserInfo playerInfo={userData.userInfo} />
-                        <div className="leftSection">
-                            <StatisticDetail statisticDetail={userData.statisticDetail} />
-                            <PinnedPlay pinnedPlay={userData.pinnedPlay} />
-                        </div>
-                        <AboutMe aboutMe={userData.aboutMe} />
-                        <PlayHistory playHistory={userData.playHistory} />
-                        <style jsx>
-                            {`
-                                .App {
-                                    display: flex;
-                                    flex-wrap: wrap;
-                                    align-content: flex-start;
-
-                                    gap: 20px 10px;
-                                }
-
-                                .leftSection {
-                                    width: 300px;
-
-                                    display: flex;
-                                    flex-wrap: wrap;
-                                    gap: 20px;
-                                }
-                            `}
-                        </style>
-                    </div>
-                ) : (
-                    <div className="App">
-                        <div className="notFound">
-                            <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/user-not-found.png" />
-                            <div className="header">User not found!</div>
-                            The user might not exist or have been restricted and cannot be displayed. <br></br>
-                            Imagine being banned lol get rekt.
+                    >
+                        <div className="App">
+                            <UserInfo playerInfo={userData.userInfo} />
+                            <div className="leftSection">
+                                <StatisticDetail statisticDetail={userData.statisticDetail} />
+                                <PinnedPlay pinnedPlay={userData.pinnedPlay} />
+                            </div>
+                            <AboutMe aboutMe={userData.aboutMe} />
+                            <PlayHistory playHistory={userData.playHistory} />
                             <style jsx>
                                 {`
-                                    .notFound {
-                                        width: 100%;
+                                    .App {
+                                        display: flex;
+                                        flex-wrap: wrap;
+                                        align-content: flex-start;
 
-                                        padding: 30px;
-
-                                        background-color: #151515;
-                                        border-radius: 20px;
-
-                                        text-align: center;
+                                        gap: 20px 10px;
                                     }
-                                    .header {
-                                        font-size: 2em;
-                                        font-weight: 700;
+
+                                    .leftSection {
+                                        width: 300px;
+
+                                        display: flex;
+                                        flex-wrap: wrap;
+                                        gap: 20px;
                                     }
                                 `}
                             </style>
                         </div>
+                    </motion.main>
+                </>
+            );
+        else
+            return (
+                <div className="App">
+                    <div className="notFound">
+                        <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/user-not-found.png" />
+                        <div className="header">User not found!</div>
+                        The user might not exist or have been restricted and cannot be displayed. <br></br>
+                        Imagine being banned lol get rekt.
+                        <style jsx>
+                            {`
+                                .notFound {
+                                    width: 100%;
+
+                                    padding: 30px;
+
+                                    background-color: #151515;
+                                    border-radius: 20px;
+
+                                    text-align: center;
+                                }
+                                .header {
+                                    font-size: 2em;
+                                    font-weight: 700;
+                                }
+                            `}
+                        </style>
                     </div>
-                )}
-            </motion.main>
-        </>
-    );
+                </div>
+            );
+    }
 };
 
 export default Userpage;
