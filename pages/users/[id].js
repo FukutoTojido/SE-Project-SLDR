@@ -466,7 +466,34 @@ const Userpage = () => {
                             `}
                         </style>
                     </div>
-                ) : null}
+                ) : (
+                    <div className="App">
+                        <div className="notFound">
+                            <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/user-not-found.png" />
+                            <div className="header">User not found!</div>
+                            The user might not exist or have been restricted and cannot be displayed. <br></br>
+                            Imagine being banned lol get rekt.
+                            <style jsx>
+                                {`
+                                    .notFound {
+                                        width: 100%;
+
+                                        padding: 30px;
+
+                                        background-color: #151515;
+                                        border-radius: 20px;
+
+                                        text-align: center;
+                                    }
+                                    .header {
+                                        font-size: 2em;
+                                        font-weight: 700;
+                                    }
+                                `}
+                            </style>
+                        </div>
+                    </div>
+                )}
             </motion.main>
         </>
     );
