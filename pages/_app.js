@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
             <Background />
             <Header />
             <div className="AppContainer">
-                <AnimatePresence exitBeforeEnter initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
+                <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
                     <Component {...pageProps} />
                 </AnimatePresence>
                 <Footer />

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Label } from "../pages/users/[id].js";
 import bbobHTML from "@bbob/html";
+import { Label } from "./BasicComponent";
 import presetHTML5 from "@bbob/preset-html5";
+import Link from "next/link";
 
 class UserInfo extends Component {
     constructor(props) {
@@ -599,279 +600,279 @@ class PlayContainer extends Component {
 
     render() {
         return (
-            <div className={`playContainer ${this.props.playData.mapInfo.mapCategory}`}>
-                <div className="playDate">
-                    Play date:
-                    <span>
-                        {new Date(this.props.playData.playInfo.playDate * 1000)
-                            .toLocaleTimeString("en-GB", {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                                day: "numeric",
-                                month: "short",
-                                year: "numeric",
-                            })
-                            .replaceAll(", ", " - ")}
-                    </span>
-                </div>
-                <div
-                    className={`playDifficulty ${this.props.playData.mapInfo.mapCategory}`}
-                >{`${this.props.playData.mapInfo.mapCategory} ${this.props.playData.mapInfo.mapDifficulty}`}</div>
-                <div className="playArtist">{this.props.playData.mapInfo.mapArtist}</div>
-                <div className="playTitle">{this.props.playData.mapInfo.mapTitle}</div>
-                <div className="statContainer">
-                    <div className="rankContainer">
-                        <div className="pinnedLabel">rank</div>
-                        <div className={`rank ${this.props.playData.playInfo.rank}`}>{this.props.playData.playInfo.rank}</div>
+            <Link href={`/charts/${this.props.playData.mapInfo.mapId}`} style={{ width: "100%", margin: "10px" }}>
+                <div className={`playContainer ${this.props.playData.mapInfo.mapCategory}`}>
+                    <div className="playDate">
+                        Play date:
+                        <span>
+                            {new Date(this.props.playData.playInfo.playDate * 1000)
+                                .toLocaleTimeString("en-GB", {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric",
+                                })
+                                .replaceAll(", ", " - ")}
+                        </span>
                     </div>
-                    <div className="accuracyHitContainer">
-                        <div className="accuracyContainer">
-                            <div className="pinnedLabel">accuracy</div>
-                            <div className={`accuracy ${this.props.playData.playInfo.rank}`}>{this.props.playData.playInfo.accuracy}</div>
+                    <div
+                        className={`playDifficulty ${this.props.playData.mapInfo.mapCategory}`}
+                    >{`${this.props.playData.mapInfo.mapCategory} ${this.props.playData.mapInfo.mapDifficulty}`}</div>
+                    <div className="playArtist">{this.props.playData.mapInfo.mapArtist}</div>
+                    <div className="playTitle">{this.props.playData.mapInfo.mapTitle}</div>
+                    <div className="statContainer">
+                        <div className="rankContainer">
+                            <div className="pinnedLabel">rank</div>
+                            <div className={`rank ${this.props.playData.playInfo.rank}`}>{this.props.playData.playInfo.rank}</div>
                         </div>
-                        <div className="hitDetailsContainer">
-                            <div className="pinnedLabel">hit details</div>
-                            <div className="hitDetails">
-                                <span className="hCrit">{this.props.playData.playInfo.hitDetail.crit_perfect}</span>/
-                                <span className="hPerf">{this.props.playData.playInfo.hitDetail.perfect}</span>/
-                                <span className="hGreat">{this.props.playData.playInfo.hitDetail.great}</span>/
-                                <span className="hOk">{this.props.playData.playInfo.hitDetail.ok}</span>/
-                                <span className="hNo">{this.props.playData.playInfo.hitDetail.no}</span>
+                        <div className="accuracyHitContainer">
+                            <div className="accuracyContainer">
+                                <div className="pinnedLabel">accuracy</div>
+                                <div className={`accuracy ${this.props.playData.playInfo.rank}`}>{this.props.playData.playInfo.accuracy}</div>
+                            </div>
+                            <div className="hitDetailsContainer">
+                                <div className="pinnedLabel">hit details</div>
+                                <div className="hitDetails">
+                                    <span className="hCrit">{this.props.playData.playInfo.hitDetail.crit_perfect}</span>/
+                                    <span className="hPerf">{this.props.playData.playInfo.hitDetail.perfect}</span>/
+                                    <span className="hGreat">{this.props.playData.playInfo.hitDetail.great}</span>/
+                                    <span className="hOk">{this.props.playData.playInfo.hitDetail.ok}</span>/
+                                    <span className="hNo">{this.props.playData.playInfo.hitDetail.no}</span>
+                                </div>
                             </div>
                         </div>
+                        <div className="bonusContainer">
+                            <div className={`bonus ${this.props.playData.playInfo.isAllChain ? "allChain" : ""}`}>AC</div>
+                            <div className={`bonus ${this.props.playData.playInfo.isFullFuse ? "fullFuse" : ""}`}>FF</div>
+                        </div>
                     </div>
-                    <div className="bonusContainer">
-                        <div className={`bonus ${this.props.playData.playInfo.isAllChain ? "allChain" : ""}`}>AC</div>
-                        <div className={`bonus ${this.props.playData.playInfo.isFullFuse ? "fullFuse" : ""}`}>FF</div>
-                    </div>
+                    <style jsx>
+                        {`
+                            .playContainer {
+                                position: relative;
+                                width: 100%;
+                                height: 200px;
+
+                                border-radius: 20px;
+                                background-image: linear-gradient(
+                                        90deg,
+                                        rgba(0, 0, 0, 0.2) 0%,
+                                        rgba(17, 17, 17, 0.865983893557423) 70%,
+                                        rgba(21, 21, 21, 1) 100%
+                                    ),
+                                    url("${this.props.playData.mapInfo.mapCoverURL}");
+                                background-size: cover;
+                                background-position: center;
+                            }
+
+                            .playContainer.MASTER:hover {
+                                outline: solid 3px #d08770;
+                            }
+
+                            .playDate {
+                                position: absolute;
+
+                                height: 30px;
+                                text-align: center;
+                                line-height: 30px;
+                                font-size: 11px;
+                                font-weight: 300;
+
+                                padding: 0 15px;
+                                margin: 10px;
+
+                                background-color: #151515;
+                                border-radius: 15px;
+
+                                box-shadow: 0 2px 2px rgb(0 0 0 /0.25);
+                            }
+
+                            .playDate span {
+                                font-weight: 500;
+                                margin-left: 5px;
+                            }
+                            .playDifficulty {
+                                position: absolute;
+                                top: 30px;
+                                right: 50px;
+
+                                font-size: 11px;
+                                font-weight: 700;
+                                color: #151515;
+                                line-height: 20px;
+
+                                height: 20px;
+                                padding: 0 15px;
+
+                                border-radius: 10px;
+                            }
+
+                            .playDifficulty.MASTER {
+                                background-color: #d08770;
+                                box-shadow: 0 0 5px #d08770;
+                            }
+
+                            .playArtist {
+                                position: absolute;
+                                top: 70px;
+                                right: 50px;
+
+                                text-align: right;
+                                font-size: 15px;
+                                color: white;
+                            }
+
+                            .playTitle {
+                                position: absolute;
+                                top: 80px;
+                                right: 50px;
+
+                                text-align: right;
+                                font-size: 36px;
+                                font-weight: 700;
+                                color: white;
+                            }
+
+                            .statContainer {
+                                position: absolute;
+                                right: 50px;
+                                top: 130px;
+
+                                display: flex;
+                                justify-content: flex-end;
+                                gap: 30px;
+                            }
+
+                            .pinnedLabel {
+                                font-size: 7px;
+                                color: white;
+                            }
+
+                            .rankContainer {
+                                width: 100px;
+                            }
+
+                            .rank {
+                                width: 100px;
+
+                                padding-top: 2px;
+                                padding-bottom: 8px;
+                                font-size: 56px;
+                                line-height: 40px;
+                                font-weight: 700;
+                            }
+
+                            .rank.SSS {
+                                background: linear-gradient(90deg, #ebcb8b, #bf616a, #81a1c1);
+                                background-clip: text;
+                                color: rgb(255 255 255 /0.1);
+                            }
+
+                            .accuracyHitContainer {
+                                width: 120px;
+                                display: flex;
+                                flex-wrap: wrap;
+
+                                gap: 5px;
+
+                                height: 50px;
+                            }
+
+                            .accuracyContainer {
+                                width: 100%;
+                            }
+
+                            .accuracy {
+                                font-size: 13px;
+                                font-weight: 500;
+                            }
+
+                            .accuracy.SSS {
+                                color: #efbe60;
+                                text-shadow: 0 0 5px #efbe60;
+                            }
+
+                            .hitDetails {
+                                font-weight: 500;
+                                font-size: 13px;
+                            }
+
+                            .hitDetails span {
+                                margin-right: 2px;
+                            }
+
+                            .hitDetails span:not(:first-child) {
+                                margin: 2px;
+                            }
+
+                            .hCrit {
+                                color: #efbe60;
+                                text-shadow: 0 0 5px #efbe60;
+                            }
+
+                            .hPerf {
+                                color: #ef8260;
+                                text-shadow: 0 0 5px #ef8260;
+                            }
+
+                            .hGreat {
+                                color: #ba5e8a;
+                                text-shadow: 0 0 5px #ba5e8a;
+                            }
+
+                            .hOk {
+                                color: #5dc273;
+                                text-shadow: 0 0 5px #5dc273;
+                            }
+
+                            .hNo {
+                                color: #ec5050;
+                                text-shadow: 0 0 5px #ec5050;
+                            }
+
+                            .bonusContainer {
+                                display: flex;
+                                gap: 20px;
+
+                                height: 50px;
+                                align-items: center;
+                            }
+
+                            .bonus {
+                                width: 30px;
+                                height: 30px;
+
+                                font-size: 13px;
+                                font-weight: 700;
+                                text-align: center;
+                                color: #242424;
+
+                                border-radius: 15px;
+                                border: solid 2px #242424;
+
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+
+                            .allChain {
+                                border: solid 2px #6dd46b;
+                                color: #6dd46b;
+                                text-shadow: 0 0 5px #6dd46b;
+                                box-shadow: 0 0 5px #6dd46b;
+                            }
+
+                            .fullFuse {
+                                border: solid 2px #dc883b;
+                                color: #dc883b;
+                                text-shadow: 0 0 5px #dc883b;
+                                box-shadow: 0 0 5px #dc883b;
+                            }
+                        `}
+                    </style>
                 </div>
-                <style jsx>
-                    {`
-                        .playContainer {
-                            position: relative;
-                            width: 100%;
-                            height: 200px;
-
-                            margin: 3px;
-
-                            border-radius: 20px;
-                            background-image: linear-gradient(
-                                    90deg,
-                                    rgba(0, 0, 0, 0.2) 0%,
-                                    rgba(17, 17, 17, 0.865983893557423) 70%,
-                                    rgba(21, 21, 21, 1) 100%
-                                ),
-                                url("${this.props.playData.mapInfo.mapCoverURL}");
-                            background-size: cover;
-                            background-position: center;
-                        }
-
-                        .playContainer.MASTER:hover {
-                            outline: solid 3px #d08770;
-                        }
-
-                        .playDate {
-                            position: absolute;
-
-                            height: 30px;
-                            text-align: center;
-                            line-height: 30px;
-                            font-size: 11px;
-                            font-weight: 300;
-
-                            padding: 0 15px;
-                            margin: 10px;
-
-                            background-color: #151515;
-                            border-radius: 15px;
-
-                            box-shadow: 0 2px 2px rgb(0 0 0 /0.25);
-                        }
-
-                        .playDate span {
-                            font-weight: 500;
-                            margin-left: 5px;
-                        }
-                        .playDifficulty {
-                            position: absolute;
-                            top: 30px;
-                            right: 50px;
-
-                            font-size: 11px;
-                            font-weight: 700;
-                            color: #151515;
-                            line-height: 20px;
-
-                            height: 20px;
-                            padding: 0 15px;
-
-                            border-radius: 10px;
-                        }
-
-                        .playDifficulty.MASTER {
-                            background-color: #d08770;
-                            box-shadow: 0 0 5px #d08770;
-                        }
-
-                        .playArtist {
-                            position: absolute;
-                            top: 70px;
-                            right: 50px;
-
-                            text-align: right;
-                            font-size: 15px;
-                            color: white;
-                        }
-
-                        .playTitle {
-                            position: absolute;
-                            top: 80px;
-                            right: 50px;
-
-                            text-align: right;
-                            font-size: 36px;
-                            font-weight: 700;
-                            color: white;
-                        }
-
-                        .statContainer {
-                            position: absolute;
-                            right: 50px;
-                            top: 130px;
-
-                            display: flex;
-                            justify-content: flex-end;
-                            gap: 30px;
-                        }
-
-                        .pinnedLabel {
-                            font-size: 7px;
-                            color: white;
-                        }
-
-                        .rankContainer {
-                            width: 100px;
-                        }
-
-                        .rank {
-                            width: 100px;
-
-                            padding-top: 2px;
-                            padding-bottom: 8px;
-                            font-size: 56px;
-                            line-height: 40px;
-                            font-weight: 700;
-                        }
-
-                        .rank.SSS {
-                            background: linear-gradient(90deg, #ebcb8b, #bf616a, #81a1c1);
-                            background-clip: text;
-                            color: rgb(255 255 255 /0.1);
-                        }
-
-                        .accuracyHitContainer {
-                            width: 120px;
-                            display: flex;
-                            flex-wrap: wrap;
-
-                            gap: 5px;
-
-                            height: 50px;
-                        }
-
-                        .accuracyContainer {
-                            width: 100%;
-                        }
-
-                        .accuracy {
-                            font-size: 13px;
-                            font-weight: 500;
-                        }
-
-                        .accuracy.SSS {
-                            color: #efbe60;
-                            text-shadow: 0 0 5px #efbe60;
-                        }
-
-                        .hitDetails {
-                            font-weight: 500;
-                            font-size: 13px;
-                        }
-
-                        .hitDetails span {
-                            margin-right: 2px;
-                        }
-
-                        .hitDetails span:not(:first-child) {
-                            margin: 2px;
-                        }
-
-                        .hCrit {
-                            color: #efbe60;
-                            text-shadow: 0 0 5px #efbe60;
-                        }
-
-                        .hPerf {
-                            color: #ef8260;
-                            text-shadow: 0 0 5px #ef8260;
-                        }
-
-                        .hGreat {
-                            color: #ba5e8a;
-                            text-shadow: 0 0 5px #ba5e8a;
-                        }
-
-                        .hOk {
-                            color: #5dc273;
-                            text-shadow: 0 0 5px #5dc273;
-                        }
-
-                        .hNo {
-                            color: #ec5050;
-                            text-shadow: 0 0 5px #ec5050;
-                        }
-
-                        .bonusContainer {
-                            display: flex;
-                            gap: 20px;
-
-                            height: 50px;
-                            align-items: center;
-                        }
-
-                        .bonus {
-                            width: 30px;
-                            height: 30px;
-
-                            font-size: 13px;
-                            font-weight: 700;
-                            text-align: center;
-                            color: #242424;
-
-                            border-radius: 15px;
-                            border: solid 2px #242424;
-
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                        }
-
-                        .allChain {
-                            border: solid 2px #6dd46b;
-                            color: #6dd46b;
-                            text-shadow: 0 0 5px #6dd46b;
-                            box-shadow: 0 0 5px #6dd46b;
-                        }
-
-                        .fullFuse {
-                            border: solid 2px #dc883b;
-                            color: #dc883b;
-                            text-shadow: 0 0 5px #dc883b;
-                            box-shadow: 0 0 5px #dc883b;
-                        }
-                    `}
-                </style>
-            </div>
+            </Link>
         );
     }
 }

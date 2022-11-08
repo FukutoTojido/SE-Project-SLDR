@@ -4,6 +4,7 @@ import styles from "../../styles/Userpage.module.css";
 import { UserInfo, StatisticDetail, PinnedPlay, AboutMe, PlayHistory } from "../../components/UsersComponent";
 import { motion } from "framer-motion";
 import { variants } from "../_app";
+import { Label } from "../../components/BasicComponent";
 import Head from "next/head";
 
 const usersList = {
@@ -363,114 +364,77 @@ const usersList = {
     },
 };
 
-class Label extends Component {
-    constructor(props) {
-        super(props);
-    }
+const UserpageContent = (props) => {
+    const [userData, setUserData] = useState(usersList[props.userId]);
 
-    render() {
+    useEffect(() => {
+        setUserData(usersList[props.userId]);
+    });
+
+    if (userData !== {})
         return (
-            <div className="label">
-                {this.props.label}
-                <style jsx>
-                    {`
-                        .label {
-                            position: relative;
-                            width: 100%;
-                            height: 14px;
+            <>
+                <Head>
+                    <title>{`${userData.userInfo.userName} • Sl::dr Profile`}</title>
+                </Head>
+                <motion.main
+                    initial="hidden"
+                    animate="enter"
+                    exit="exit"
+                    variants={variants}
+                    transition={{ type: "linear" }}
+                    className="
+                        flex flex-col items-start w-full pt-10
+                        px-8 sm:px-16 md:px-36 lg:px-52 xl:px-80 2xl:px-96
+                        pt-24 h-full
+                    "
+                >
+                    <div className="App">
+                        <UserInfo playerInfo={userData.userInfo} />
+                        <div className="leftSection">
+                            <StatisticDetail statisticDetail={userData.statisticDetail} />
+                            <PinnedPlay pinnedPlay={userData.pinnedPlay} />
+                        </div>
+                        <AboutMe aboutMe={userData.aboutMe} />
+                        <PlayHistory playHistory={userData.playHistory} />
+                        <style jsx>
+                            {`
+                                .App {
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    align-content: flex-start;
 
-                            font-size: 16px;
-                            font-weight: 500;
-                            line-height: 14px;
+                                    gap: 20px 10px;
+                                }
 
-                            padding-left: 14px;
+                                .leftSection {
+                                    width: 300px;
 
-                            display: flex;
-                            align-items: center;
-                        }
-
-                        .label::before {
-                            position: absolute;
-                            content: "";
-
-                            width: 4px;
-                            height: 14px;
-
-                            background-color: white;
-                            border-radius: 2px;
-
-                            transform: translateX(-10px);
-                        }
-                    `}
-                </style>
-            </div>
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    gap: 20px;
+                                }
+                            `}
+                        </style>
+                    </div>
+                </motion.main>
+            </>
         );
-    }
-}
+};
 
 const Userpage = () => {
     const router = useRouter();
     const id = router.query.id;
 
-    const [userData, setUserData] = useState(undefined);
     const [userId, setUserId] = useState(undefined);
 
     useEffect(() => {
         if (!router.isReady) return;
         setUserId(router.query.id);
-        setUserData(usersList[router.query.id]);
     });
 
     if (userId !== undefined) {
-        if (Object.keys(usersList).includes(userId))
-            return (
-                <>
-                    <Head>
-                        <title>{`${userData.userInfo.userName} • Sl::dr Profile`}</title>
-                    </Head>
-                    <motion.main
-                        initial="hidden"
-                        animate="enter"
-                        exit="exit"
-                        variants={variants}
-                        transition={{ type: "linear" }}
-                        className="
-                        flex flex-col items-start w-full pt-10
-                        px-8 sm:px-16 md:px-36 lg:px-52 xl:px-80 2xl:px-96
-                        pt-24 h-full
-                    "
-                    >
-                        <div className="App">
-                            <UserInfo playerInfo={userData.userInfo} />
-                            <div className="leftSection">
-                                <StatisticDetail statisticDetail={userData.statisticDetail} />
-                                <PinnedPlay pinnedPlay={userData.pinnedPlay} />
-                            </div>
-                            <AboutMe aboutMe={userData.aboutMe} />
-                            <PlayHistory playHistory={userData.playHistory} />
-                            <style jsx>
-                                {`
-                                    .App {
-                                        display: flex;
-                                        flex-wrap: wrap;
-                                        align-content: flex-start;
-
-                                        gap: 20px 10px;
-                                    }
-
-                                    .leftSection {
-                                        width: 300px;
-
-                                        display: flex;
-                                        flex-wrap: wrap;
-                                        gap: 20px;
-                                    }
-                                `}
-                            </style>
-                        </div>
-                    </motion.main>
-                </>
-            );
+        if (Object.keys(usersList).includes(userId)) return <UserpageContent userId={userId} />;
         else
             return (
                 <div className="App">
@@ -504,4 +468,3 @@ const Userpage = () => {
 };
 
 export default Userpage;
-export { Label };
