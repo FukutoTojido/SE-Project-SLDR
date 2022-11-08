@@ -31,7 +31,7 @@ const Menu = () => {
                 }
 
                 .warning {
-                    color: #DD4352;
+                    color: #dd4352;
                 }
 
                 .option:hover {
@@ -40,7 +40,7 @@ const Menu = () => {
 
                 .warning:hover {
                     color: #151515;
-                    background-color: #DD4352;
+                    background-color: #dd4352;
 
                     font-weight: 700;
                 }
@@ -329,4 +329,152 @@ const ChartDetail = (props) => {
         );
 };
 
-export { ChartDetail };
+const Leaderboard = (props) => {
+    const [leaderboardList, setLeaderboardList] = useState([]);
+
+    useEffect(() => {
+        setLeaderboardList(props.leaderboardList);
+    }, [props.leaderboardList]);
+
+    return (
+        <div className="container">
+            <Label label="Leaderboard" />
+            <div className="leaderboardContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>pos.</th>
+                            <th>rank</th>
+                            <th>player name</th>
+                            <th>score</th>
+                            <th>max chain</th>
+                            <th>max fuse</th>
+                            <th>great</th>
+                            <th>ok</th>
+                            <th>no</th>
+                            <th>play date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {leaderboardList.map((play, idx) => {
+                            return (
+                                <tr key={idx}>
+                                    <td>#{play.position}</td>
+                                    <td className={play.rank}>{play.rank}</td>
+                                    <td>
+                                        <Link href={`/users/${play.playerId}`}>{play.playerName}</Link>
+                                    </td>
+                                    <td>{play.score.toLocaleString("en-US")}</td>
+                                    <td>{play.maxChain}</td>
+                                    <td>{play.maxFuse}</td>
+                                    <td>{play.great}</td>
+                                    <td>{play.ok}</td>
+                                    <td>{play.no}</td>
+                                    <td>
+                                        {new Date(play.playDate * 1000)
+                                            .toLocaleTimeString("en-GB", {
+                                                hour: "2-digit",
+                                                minute: "2-digit",
+                                                day: "numeric",
+                                                month: "short",
+                                                year: "numeric",
+                                            })
+                                            .replaceAll(", ", " - ")}
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+            <style jsx>
+                {`
+                    .container {
+                        width: 100%;
+
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                    }
+
+                    .leaderboardContainer {
+                        width: 100%;
+
+                        background-color: #151515;
+                        border-radius: 20px;
+
+                        padding: 30px;
+                        padding-top: 10px;
+                    }
+
+                    table {
+                        width: 100%;
+                        border-spacing: 0;
+                    }
+
+                    th {
+                        font-size: 12px;
+                        color: #696969;
+                    }
+
+                    td {
+                        font-size: 14px;
+                    }
+
+                    th,
+                    td {
+                        text-align: left;
+                        padding: 10px;
+                        user-select: none;
+                    }
+
+                    th:first-child,
+                    th:last-child,
+                    td:first-child,
+                    td:last-child {
+                        text-align: right;
+                    }
+
+                    tr td:first-child {
+                        border-radius: 10px 0 0 10px;
+                    }
+
+                    tr td:last-child {
+                        width: 200px;
+                        border-top-right-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                    }
+
+                    td:first-child {
+                        width: 30px;
+                    }
+
+                    td:nth-child(2),
+                    td:nth-child(3) {
+                        font-weight: 500;
+                    }
+
+                    tbody tr:nth-child(2n + 1) {
+                        background-color: #242424;
+                    }
+
+                    td:nth-child(2) {
+                        font-weight: 700;
+                    }
+
+                    td:nth-child(3):hover {
+                        color: #d4a018;
+                    }
+
+                    td.SSS {
+                        background: linear-gradient(90deg, #ebcb8b, #bf616a, #81a1c1);
+                        background-size: 60%;
+                        background-clip: text;
+                        color: rgb(255 255 255 /0);
+                    }
+                `}
+            </style>
+        </div>
+    );
+};
+export { ChartDetail, Leaderboard };

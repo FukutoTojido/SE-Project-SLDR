@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Link from "next/link";
 import styles from "../styles/Header.module.css";
+import { authorizedStatus } from "../pages/_app";
 
 class UserNav extends Component {
     constructor(props) {
@@ -54,18 +55,7 @@ class UserNav extends Component {
     }
 }
 
-class Header extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            authorizedStatus: {
-                isAuthorized: true,
-                userId: 8266808,
-            },
-        };
-    }
-
-    render() {
+const Header = () => {
         return (
             <div className={styles.headerContainer}>
                 <div className={styles.headerLogo}></div>
@@ -80,8 +70,8 @@ class Header extends Component {
                         settings
                     </Link>
                 </div>
-                {this.state.authorizedStatus.isAuthorized ? (
-                    <Link href={`/users/${this.state.authorizedStatus.userId}`}>
+                {authorizedStatus.isAuthorized ? (
+                    <Link href={`/users/${authorizedStatus.userId}`}>
                         <UserNav />
                     </Link>
                 ) : (
@@ -91,7 +81,6 @@ class Header extends Component {
                 )}
             </div>
         );
-    }
 }
 
 export default Header;

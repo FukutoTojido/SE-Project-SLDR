@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { mapsList, usersList } from "../pages/_app";
+import { mapsList, usersList, authorizedStatus } from "../pages/_app";
 
 const Background = () => {
     const router = useRouter();
@@ -12,16 +12,22 @@ const Background = () => {
         // if (router.pathname.includes("users")) console.log(router.query.id);
         // else console.log(router.query.s_id);
 
-        setBackgroundURL(
-            router.pathname.includes("users")
-                ? Object.keys(usersList).includes(router.query.id)
-                    ? `${usersList[router.query.id].userInfo.userCoverURL}`
-                    : ""
-                : Object.keys(mapsList).includes(router.query.s_id)
-                ? `${mapsList[router.query.s_id].mapCoverURL}`
-                : ""
-        );
-    }, [router.isReady, router.pathname]);
+        if (authorizedStatus.isAuthorized) {
+            if (router.pathname.includes("users"))
+                setBackgroundURL(
+                    Object.keys(usersList).includes(router.query.id)
+                        ? usersList[router.query.id].userInfo.userCoverURL
+                        : usersList[authorizedStatus.userId].userInfo.userCoverURL
+                );
+            else if (router.pathname.includes("charts"))
+                setBackgroundURL(
+                    Object.keys(mapsList).includes(router.query.s_id)
+                        ? mapsList[router.query.s_id].mapCoverURL
+                        : usersList[authorizedStatus.userId].userInfo.userCoverURL
+                );
+            else setBackgroundURL(usersList[authorizedStatus.userId].userInfo.userCoverURL);
+        } else setBackgroundURL("/static/default.png");
+    }, [router.isReady, router.asPath]);
 
     return (
         <div className="background">
@@ -58,7 +64,7 @@ const Background = () => {
                         background-attachment: fixed;
                         background-size: cover;
 
-                        filter: blur(${router.pathname.includes("users") ? "2px" : "10px"});
+                        filter: blur(${authorizedStatus.isAuthorized ? (router.pathname.includes("charts") ? "10px" : "2px") : "0px"});
                         z-index: 0;
                     }
                 `}

@@ -12,7 +12,6 @@ class UserInfo extends Component {
 
     render() {
         if (this.state !== undefined) {
-            const backgroundURL = `url('/static/users/${this.props.playerInfo.userId}.png')`;
             return (
                 <div className="container">
                     <Label label="User Info" />
@@ -56,7 +55,7 @@ class UserInfo extends Component {
                                 width: 100%;
                                 height: 400px;
 
-                                background: ${backgroundURL};
+                                background: url('${this.props.playerInfo.userCoverURL}');
                                 background-size: cover;
                                 background-position: 0 -170px;
                                 background-repeat: no-repeat;

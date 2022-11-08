@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { Component, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { variants } from "../../_app";
-import { ChartDetail } from "../../../components/ChartComponent";
+import { ChartDetail, Leaderboard } from "../../../components/ChartComponent";
 import Head from "next/head";
 import { mapsList } from "../../_app";
 
@@ -34,6 +34,18 @@ const ChartPage = () => {
                 >
                     <div className="App">
                         <ChartDetail setData={mapsList[setId]} mapDifficulty={mapsList[setId].mapDifficulties[mapDifficulty]} />
+                        <Leaderboard leaderboardList={mapsList[setId].mapLeaderboard}/>
+                        <style jsx>
+                            {`
+                                .App {
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    align-content: flex-start;
+
+                                    gap: 20px 10px;
+                                }
+                            `}
+                        </style>
                     </div>
                 </motion.main>
             );
