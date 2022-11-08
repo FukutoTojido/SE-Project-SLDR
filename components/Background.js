@@ -9,8 +9,8 @@ const Background = () => {
 
     useEffect(() => {
         if (!router.isReady) return;
-        if (router.pathname.includes("users")) console.log(router.query.id);
-        else console.log(router.query.s_id);
+        // if (router.pathname.includes("users")) console.log(router.query.id);
+        // else console.log(router.query.s_id);
 
         setBackgroundURL(
             router.pathname.includes("users")
