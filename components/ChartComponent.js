@@ -5,7 +5,6 @@ const ChartDetail = (props) => {
     const [mapData, setMapData] = useState({});
 
     useEffect(() => {
-        console.log(props);
         setMapData(props.setData);
     });
 
