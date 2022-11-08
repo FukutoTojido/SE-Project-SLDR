@@ -600,7 +600,7 @@ class PlayContainer extends Component {
 
     render() {
         return (
-            <Link href={`/charts/${this.props.playData.mapInfo.mapId}`} style={{ width: "100%", margin: "10px" }}>
+            <Link href={`/charts/${this.props.playData.mapInfo.mapId}/${this.props.playData.mapInfo.mapCategory.toLowerCase()}`} style={{ width: "100%", margin: "10px" }}>
                 <div className={`playContainer ${this.props.playData.mapInfo.mapCategory}`}>
                     <div className="playDate">
                         Play date:
