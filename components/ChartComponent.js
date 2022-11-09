@@ -362,10 +362,12 @@ const Leaderboard = (props) => {
                                     <td>#{play.position}</td>
                                     <td className={play.rank}>{play.rank}</td>
                                     <td>
-                                        <Link href={`/users/${play.playerId}`}>{play.playerName}</Link>
+                                        <Link href={`/users/${play.playerId}`}>
+                                            <span>{play.playerName}</span>
+                                        </Link>
                                     </td>
                                     <td>{play.score.toLocaleString("en-US")}</td>
-                                    <td>{play.maxChain}</td>
+                                    <td>{play.maxChain}x</td>
                                     <td>{play.maxFuse}</td>
                                     <td>{play.great}</td>
                                     <td>{play.ok}</td>
@@ -462,7 +464,7 @@ const Leaderboard = (props) => {
                         font-weight: 700;
                     }
 
-                    td:nth-child(3):hover {
+                    td:nth-child(3) span:hover {
                         color: #d4a018;
                     }
 

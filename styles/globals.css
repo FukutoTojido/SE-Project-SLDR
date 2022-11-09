@@ -41,8 +41,8 @@ body {
     min-height: 100vh;
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Torus, Quicksand, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-        sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Torus, Quicksand, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+        Helvetica Neue, sans-serif;
     background-color: #121212;
 
     overflow-x: hidden;
@@ -110,4 +110,5 @@ a {
     min-height: calc(100vh - 150px);
 
     margin-bottom: 20px;
+    font-family: Torus;
 }

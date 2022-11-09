@@ -3,6 +3,7 @@ import bbobHTML from "@bbob/html";
 import { Label } from "./BasicComponent";
 import presetHTML5 from "@bbob/preset-html5";
 import Link from "next/link";
+import { authorizedStatus } from "../pages/_app";
 
 class UserInfo extends Component {
     constructor(props) {
@@ -30,15 +31,22 @@ class UserInfo extends Component {
                             </div>
                         </div>
                         <div className="userInteraction">
-                            <div className="button">
-                                <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/add-user-group-man-man.png" />
-                            </div>
-                            <div className="button">
-                                <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/messages-mac.png" />
-                            </div>
-                            <div className="button">
-                                <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/remove-user-male.png" />
-                            </div>
+                            {() => {
+                                if (authorizedStatus.userId !== this.props.playerInfo.userId)
+                                    return (
+                                        <>
+                                            <div className="button">
+                                                <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/add-user-group-man-man.png" />
+                                            </div>
+                                            <div className="button">
+                                                <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/messages-mac.png" />
+                                            </div>
+                                            <div className="button">
+                                                <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/remove-user-male.png" />
+                                            </div>
+                                        </>
+                                    );
+                            }}
                         </div>
                     </div>
                     <style jsx>
@@ -55,7 +63,7 @@ class UserInfo extends Component {
                                 width: 100%;
                                 height: 400px;
 
-                                background: url('${this.props.playerInfo.userCoverURL}');
+                                background: url("${this.props.playerInfo.userCoverURL}");
                                 background-size: cover;
                                 background-position: 0 -170px;
                                 background-repeat: no-repeat;
@@ -599,7 +607,10 @@ class PlayContainer extends Component {
 
     render() {
         return (
-            <Link href={`/charts/${this.props.playData.mapInfo.mapId}/${this.props.playData.mapInfo.mapCategory.toLowerCase()}`} style={{ width: "100%", margin: "10px" }}>
+            <Link
+                href={`/charts/${this.props.playData.mapInfo.mapId}/${this.props.playData.mapInfo.mapCategory.toLowerCase()}`}
+                style={{ width: "100%", margin: "10px" }}
+            >
                 <div className={`playContainer ${this.props.playData.mapInfo.mapCategory}`}>
                     <div className="playDate">
                         Play date:
