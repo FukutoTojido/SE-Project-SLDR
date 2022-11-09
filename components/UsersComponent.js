@@ -30,24 +30,21 @@ class UserInfo extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="userInteraction">
-                            {() => {
-                                if (authorizedStatus.userId !== this.props.playerInfo.userId)
-                                    return (
-                                        <>
-                                            <div className="button">
-                                                <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/add-user-group-man-man.png" />
-                                            </div>
-                                            <div className="button">
-                                                <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/messages-mac.png" />
-                                            </div>
-                                            <div className="button">
-                                                <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/remove-user-male.png" />
-                                            </div>
-                                        </>
-                                    );
-                            }}
-                        </div>
+                        {authorizedStatus.isAuthorized && authorizedStatus.authorizationInfo.userId !== this.props.playerInfo.userId ? (
+                            <div className="userInteraction">
+                                <div className="button">
+                                    <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/add-user-group-man-man.png" />
+                                </div>
+                                <div className="button">
+                                    <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/messages-mac.png" />
+                                </div>
+                                <div className="button">
+                                    <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/remove-user-male.png" />
+                                </div>
+                            </div>
+                        ) : (
+                            ""
+                        )}
                     </div>
                     <style jsx>
                         {`
@@ -65,7 +62,10 @@ class UserInfo extends Component {
 
                                 background: url("${this.props.playerInfo.userCoverURL}");
                                 background-size: cover;
-                                background-position: 0 -170px;
+                                background-position: ${authorizedStatus.isAuthorized &&
+                                authorizedStatus.authorizationInfo.userId !== this.props.playerInfo.userId
+                                    ? "0 -90px"
+                                    : "0 -55px"};
                                 background-repeat: no-repeat;
 
                                 border-radius: 20px;
@@ -89,13 +89,17 @@ class UserInfo extends Component {
                                 justify-content: center;
                                 flex-wrap: wrap;
                                 gap: 10px;
+
+                                border-radius: ${authorizedStatus.isAuthorized && authorizedStatus.authorizationInfo.userId !== this.props.playerInfo.userId
+                                    ? 0
+                                    : "0 0 20px 20px"};
                             }
 
                             .userAvatar {
                                 width: 150px;
                                 height: 150px;
 
-                                background-image: url("https://a.ppy.sh/${this.props.playerInfo.userId}");
+                                background-image: url("${this.props.playerInfo.userAvatarURL}");
                                 background-size: cover;
                                 background-color: #15151577;
 

@@ -17,15 +17,15 @@ const Background = () => {
                 setBackgroundURL(
                     Object.keys(usersList).includes(router.query.id)
                         ? usersList[router.query.id].userInfo.userCoverURL
-                        : usersList[authorizedStatus.userId].userInfo.userCoverURL
+                        : usersList[authorizedStatus.authorizationInfo.userId].userInfo.userCoverURL
                 );
             else if (router.pathname.includes("charts"))
                 setBackgroundURL(
                     Object.keys(mapsList).includes(router.query.s_id)
                         ? mapsList[router.query.s_id].mapCoverURL
-                        : usersList[authorizedStatus.userId].userInfo.userCoverURL
+                        : usersList[authorizedStatus.authorizationInfo.userId].userInfo.userCoverURL
                 );
-            else setBackgroundURL(usersList[authorizedStatus.userId].userInfo.userCoverURL);
+            else setBackgroundURL(usersList[authorizedStatus.authorizationInfo.userId].userInfo.userCoverURL);
         } else setBackgroundURL("/static/default.png");
     }, [router.isReady, router.asPath]);
 

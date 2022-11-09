@@ -336,6 +336,14 @@ const Leaderboard = (props) => {
         setLeaderboardList(props.leaderboardList);
     }, [props.leaderboardList]);
 
+    const getTimestamp = (unixTime) => {
+        const timestamp = new Date(unixTime * 1000);
+        const monthParse = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        return `${timestamp.getHours()}:${timestamp.getMinutes()} ${timestamp.getDate()}-${
+            monthParse[timestamp.getMonth()]
+        }-${timestamp.getFullYear()}`;
+    };
+
     return (
         <div className="container">
             <Label label="Leaderboard" />
@@ -346,7 +354,7 @@ const Leaderboard = (props) => {
                             <th>pos.</th>
                             <th>rank</th>
                             <th>player name</th>
-                            <th>score</th>
+                            <th>accuracy</th>
                             <th>max chain</th>
                             <th>max fuse</th>
                             <th>great</th>
@@ -366,23 +374,13 @@ const Leaderboard = (props) => {
                                             <span>{play.playerName}</span>
                                         </Link>
                                     </td>
-                                    <td>{play.score.toLocaleString("en-US")}</td>
+                                    <td>{play.accuracy}</td>
                                     <td>{play.maxChain}x</td>
                                     <td>{play.maxFuse}</td>
                                     <td>{play.great}</td>
                                     <td>{play.ok}</td>
                                     <td>{play.no}</td>
-                                    <td>
-                                        {new Date(play.playDate * 1000)
-                                            .toLocaleTimeString("en-GB", {
-                                                hour: "2-digit",
-                                                minute: "2-digit",
-                                                day: "numeric",
-                                                month: "short",
-                                                year: "numeric",
-                                            })
-                                            .replaceAll(", ", " - ")}
-                                    </td>
+                                    <td>{getTimestamp(play.playDate)}</td>
                                 </tr>
                             );
                         })}
@@ -407,6 +405,8 @@ const Leaderboard = (props) => {
 
                         padding: 30px;
                         padding-top: 10px;
+
+                        font-weight: 500;
                     }
 
                     table {
@@ -417,6 +417,7 @@ const Leaderboard = (props) => {
                     th {
                         font-size: 12px;
                         color: #696969;
+                        font-weight: 400;
                     }
 
                     td {
