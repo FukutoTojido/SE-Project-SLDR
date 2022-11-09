@@ -1,11 +1,6 @@
 // Inside the "pages/404.js" file
 import { motion } from "framer-motion";
-
-const variants = {
-    hidden: { opacity: 0, x: 0, y: 100 },
-    enter: { opacity: 1, x: 0, y: 0 },
-    exit: { opacity: 0, x: 0, y: -100 },
-};
+import { variants } from "./_app";
 
 export default function Custom404() {
     return (
@@ -23,7 +18,7 @@ export default function Custom404() {
         >
             <div className="container">
                 <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/error--v1.png" />
-                <div className="title">This shouldn't be possible</div>
+                <div className="title">YOU SHOULDN'T BE HERE</div>
                 404 - Site not found.
                 <style jsx>{`
                     .container {

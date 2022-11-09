@@ -1,15 +1,10 @@
 import React, { Component } from "react";
+import Button from "../components/Button";
+import Post from "../components/Post"
 import styles from "../styles/Home.module.css";
+import Link from "next/link"
 import { motion } from "framer-motion";
-import Post from '../components/Post'
-import Button from '../components/Button'
-import Link from 'next/link'
-
-const variants = {
-    hidden: { opacity: 0, x: 0, y: 100 },
-    enter: { opacity: 1, x: 0, y: 0 },
-    exit: { opacity: 0, x: 0, y: -100 },
-};
+import { variants } from "./_app.js"
 
 
 
