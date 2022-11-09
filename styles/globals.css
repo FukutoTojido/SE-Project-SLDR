@@ -60,6 +60,15 @@ a {
     box-sizing: border-box;
 }
 
+button{
+    padding: 0.5rem 0.5rem;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
 @media (prefers-color-scheme: dark) {
     /* html {
         color-scheme: dark;
