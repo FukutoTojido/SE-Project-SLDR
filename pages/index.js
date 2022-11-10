@@ -49,7 +49,7 @@ const Home = () => {
                             <Button text="Download now" style={{ fontWeight: "bold", backgroundColor: "violet" }} />
                         </div> */}
                         <div className="introSection">
-                            <img src="/static/logo.png" />
+                            <img src="/static/Logo.svg" />
                             <div className="welcomeText">A popular arcade rhythm game</div>
                         </div>
                         <div className="postContainer">
