@@ -1,40 +1,39 @@
-.post{
-    background-color: black;
+.post {
+    /* background-color: black; */
     position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    padding-bottom: 5px;
-}
+    height: 150px;
+    border-radius: 20px;
+    /* overflow: hidden; */
 
-.post h4{
-    margin: 0 0 3px 10px;
-    color: white;
-}
-
-.postImg{
-    z-index: 10;
-    width: 100%;
-    height: 250px;
-    background-repeat: no-repeat;
+    background-image: linear-gradient(180deg, transparent, #000), url("/static/posts/default.png");
     background-position: center;
     background-size: cover;
-    background-image: url("https://i.pinimg.com/564x/7b/ad/54/7bad54de9540be7b3992cd667e53a2dc.jpg");
+
+    display: flex;
 }
 
-.date{
+a:first-child .post:first-child {
+    height: 250px;
+}
+
+.post:hover {
+    outline: solid 3px white;
+}
+
+.date {
     position: absolute;
-    top: 12px;
-    right: 12px;
-    background-color: black;
-    padding: 4px 4px;
-    border-radius: 5px;
-    height: 40px;
-    width: 50px;
+    top: 0;
+    right: 0;
+
+    margin: 15px;
+    background-color: #151515;
+    padding: 10px 15px;
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 400;
+
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.date p{
-    color: white;
 }

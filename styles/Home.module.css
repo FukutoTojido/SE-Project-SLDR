@@ -1,40 +1,42 @@
-.home{
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.home {
+    /* margin-top: 2rem; */
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 20px;
 }
 
-.hero{
-  position: relative;
-  width: 100%;
-  max-width: 1050px;
-  height: 500px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-image: url("https://i.pinimg.com/originals/1f/7d/44/1f7d44d475ff375e7bca99c29927d986.png");
-  border-radius: 10px;
-  margin-bottom: 30px;
+.hero {
+    position: relative;
+    width: 100%;
+    max-width: 1050px;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("https://i.pinimg.com/originals/1f/7d/44/1f7d44d475ff375e7bca99c29927d986.png");
+    border-radius: 20px;
+    /* margin-bottom: 30px; */
 }
 
-.hero > button{
-  position: absolute;
-  bottom: 20px;
-  right: 20px; 
+.hero > button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }
 
-.postGrid{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  width: 100%;
-  max-width: 1050px;
-  gap: 20px;
+.postGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-rows: repeat(2, 1fr); */
+    width: 100%;
+    /* max-width: 1050px; */
+    gap: 20px;
 }
 
-.postGrid > div:first-child {
-  grid-column: 1 / 4;
+.postGrid a:first-child {
+    grid-column: 1 / 4;
 }
-
-

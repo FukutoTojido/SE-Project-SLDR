@@ -1762,6 +1762,28 @@ const usersList = {
         ],
     },
 };
+const postsLists = [
+    {
+        postTitle: "Sl::dr Update 11/2029",
+        postAuthor: "Try-Z",
+        postDate: 1888990656,
+    },
+    {
+        postTitle: "Sl::dr Update 10/2029",
+        postAuthor: "Try-Z",
+        postDate: 1886312256,
+    },
+    {
+        postTitle: "Sl::dr Update 9/2029",
+        postAuthor: "Try-Z",
+        postDate: 1883720256,
+    },
+    {
+        postTitle: "Sl::dr Update 8/2029",
+        postAuthor: "Try-Z",
+        postDate: 1881041856,
+    },
+];
 const authorizedStatus = {
     isAuthorized: true,
     authorizationInfo: {
@@ -1790,4 +1812,4 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-export { variants, mapsList, usersList, authorizedStatus };
+export { variants, mapsList, usersList, postsLists, authorizedStatus };
