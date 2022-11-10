@@ -1,21 +1,17 @@
-import { useRouter } from "next/router";
 import React, { Component, useState, useEffect } from "react";
-import styles from "../../styles/Userpage.module.css";
 import { UserInfo, StatisticDetail, PinnedPlay, AboutMe, PlayHistory } from "../../components/UsersComponent";
 import { motion } from "framer-motion";
 import { variants } from "../_app";
-import { Label } from "../../components/BasicComponent";
 import Head from "next/head";
-import { usersList } from "../_app";
 
 const UserpageContent = (props) => {
-    const [userData, setUserData] = useState(usersList[props.userId]);
+    const [userData, setUserData] = useState(props.userData);
 
     useEffect(() => {
-        setUserData(usersList[props.userId]);
+        setUserData(props.userData);
     });
 
-    if (userData !== {})
+    if (userData !== undefined)
         return (
             <>
                 <Head>
@@ -66,19 +62,15 @@ const UserpageContent = (props) => {
         );
 };
 
-const Userpage = () => {
-    const router = useRouter();
-    const id = router.query.id;
-
-    const [userId, setUserId] = useState(undefined);
+const Userpage = (props) => {
+    const [userData, setUserData] = useState(undefined);
 
     useEffect(() => {
-        if (!router.isReady) return;
-        setUserId(router.query.id);
+        if (props.data.dataType === "users") setUserData(props.data);
     });
 
-    if (userId !== undefined) {
-        if (Object.keys(usersList).includes(userId)) return <UserpageContent userId={userId} />;
+    if (userData !== undefined) {
+        if (userData.userInfo !== undefined) return <UserpageContent userData={userData} />;
         else
             return (
                 <div className="App">

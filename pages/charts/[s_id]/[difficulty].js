@@ -1,30 +1,24 @@
-import { useRouter } from "next/router";
 import React, { Component, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { variants } from "../../_app";
 import { ChartDetail, Leaderboard, ReportPopup } from "../../../components/ChartComponent";
 import Head from "next/head";
-import { mapsList } from "../../_app";
 
-const ChartPage = () => {
-    const router = useRouter();
-    const [setId, setSetId] = useState(0);
-    const [mapDifficulty, setMapDifficulty] = useState("");
+const ChartPage = (props) => {
     const [showReportPopup, setShowReportPopup] = useState(false);
     const [showDeletePopup, setShowDeletePopup] = useState(false);
+    const [setData, setSetData] = useState(undefined);
 
     useEffect(() => {
-        if (!router.isReady) return;
-        setSetId(router.query.s_id);
-        setMapDifficulty(router.query.difficulty);
+        if (props.data.dataType === "charts") setSetData(props.data);
     });
 
-    if (setId !== 0 && mapDifficulty !== "") {
-        if (Object.keys(mapsList).includes(setId) && ["easy", "advanced", "expert", "master"].includes(mapDifficulty))
+    if (setData !== undefined) {
+        if (setData.mapId !== undefined && ["easy", "advanced", "expert", "master"].includes(setData.difficulty))
             return (
                 <>
                     <Head>
-                        <title>{`${mapsList[setId].mapArtist} - ${mapsList[setId].mapTitle} • Sl::dr Profile`}</title>
+                        <title>{`${setData.mapArtist} - ${setData.mapTitle} • Sl::dr Profile`}</title>
                     </Head>
                     <motion.main
                         initial="hidden"
@@ -40,14 +34,14 @@ const ChartPage = () => {
                     >
                         <div className="App">
                             <ChartDetail
-                                setData={mapsList[setId]}
-                                mapDifficulty={mapsList[setId].mapDifficulties[mapDifficulty]}
+                                setData={setData}
+                                mapDifficulty={setData.mapDifficulties[setData.difficulty]}
                                 showReportPopup={showReportPopup}
                                 showDeletePopup={showDeletePopup}
                                 setShowReporPopup={setShowReportPopup}
                                 setShowDeletePopup={setShowDeletePopup}
                             />
-                            <Leaderboard leaderboardList={mapsList[setId].mapLeaderboard} />
+                            <Leaderboard leaderboardList={setData.mapLeaderboard} />
                             <style jsx>
                                 {`
                                     .App {
