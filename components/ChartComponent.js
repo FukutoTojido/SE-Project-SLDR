@@ -50,16 +50,24 @@ const ReportPopup = (props) => {
 
 const Menu = (props) => {
     return (
-        <div className="menuContainer">
+        <div className="menuContainer" ref={props.mref}>
             <div
                 className="option"
                 onClick={() => {
                     props.setShowReportPopup(!props.showReportPopup);
+                    props.setShowMenu(false);
                 }}
             >
                 report problem
             </div>
-            <div className="option warning">DELETE CHARTSET</div>
+            <div
+                className="option warning"
+                onClick={() => {
+                    props.setShowMenu(false);
+                }}
+            >
+                DELETE CHARTSET
+            </div>
             <style jsx>{`
                 .menuContainer {
                     width: 140px;
@@ -107,6 +115,24 @@ const ChartDetail = (props) => {
     const [difficulty, setDifficulty] = useState({});
     const [showMenu, setShowMenu] = useState(false);
 
+    const menuRef = useRef(null);
+    const toggleRef = useRef(null);
+
+    const checkMenuState = (e) => {
+        if (menuRef.current && !menuRef.current.contains(e.target)) setShowMenu(false);
+        if (toggleRef.current && toggleRef.current.contains(e.target)) {
+            if (menuRef.current && !menuRef.current.contains(e.target)) setShowMenu(false);
+            else if (!menuRef.current) setShowMenu(true);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", checkMenuState);
+        return () => {
+            document.removeEventListener("mousedown", checkMenuState);
+        };
+    }, []);
+
     useEffect(() => {
         setMapData(props.setData);
         setDifficulty(props.mapDifficulty);
@@ -146,15 +172,19 @@ const ChartDetail = (props) => {
                         })}
                     </div>
                     <div className="menu">
-                        <div
-                            className="menuIcon"
-                            onClick={() => {
-                                showMenu ? setShowMenu(false) : setShowMenu(true);
-                            }}
-                        >
+                        <div className="menuIcon" ref={toggleRef}>
                             <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/more.png" />
                         </div>
-                        {showMenu ? <Menu showReportPopup={props.showReportPopup} setShowReportPopup={props.setShowReporPopup} /> : ""}
+                        {showMenu ? (
+                            <Menu
+                                setShowMenu={setShowMenu}
+                                showReportPopup={props.showReportPopup}
+                                setShowReportPopup={props.setShowReporPopup}
+                                mref={menuRef}
+                            />
+                        ) : (
+                            ""
+                        )}
                     </div>
                 </div>
                 <style jsx>
