@@ -440,6 +440,8 @@ const Leaderboard = (props) => {
                             <th>accuracy</th>
                             <th>max chain</th>
                             <th>max fuse</th>
+                            <th>crit.</th>
+                            <th>perf.</th>
                             <th>great</th>
                             <th>ok</th>
                             <th>no</th>
@@ -460,6 +462,8 @@ const Leaderboard = (props) => {
                                     <td>{play.accuracy}</td>
                                     <td>{play.maxChain}x</td>
                                     <td>{play.maxFuse}</td>
+                                    <td>{play.crit}</td>
+                                    <td>{play.perfect}</td>
                                     <td>{play.great}</td>
                                     <td>{play.ok}</td>
                                     <td>{play.no}</td>
@@ -499,8 +503,8 @@ const Leaderboard = (props) => {
 
                     th {
                         font-size: 12px;
-                        color: #696969;
-                        font-weight: 400;
+                        color: #909090;
+                        font-weight: 500;
                     }
 
                     td {
@@ -526,7 +530,7 @@ const Leaderboard = (props) => {
                     }
 
                     tr td:last-child {
-                        width: 200px;
+                        width: 150px;
                         border-top-right-radius: 10px;
                         border-bottom-right-radius: 10px;
                     }
@@ -554,9 +558,38 @@ const Leaderboard = (props) => {
 
                     td.SSS {
                         background: linear-gradient(90deg, #ebcb8b, #bf616a, #81a1c1);
-                        background-size: 60%;
+                        background-size: 50%;
                         background-clip: text;
                         color: rgb(255 255 255 /0);
+                    }
+
+                    td:nth-child(7),
+                    td:nth-child(8),
+                    td:nth-child(9),
+                    td:nth-child(10),
+                    td:nth-child(11) {
+                        width: 60px;
+                    }
+
+                    td:nth-child(7) {
+                        text-shadow: 0 0 2px #efbe60;
+                        color: #efbe60;
+                    }
+                    td:nth-child(8) {
+                        text-shadow: 0 0 2px #ef8260;
+                        color: #ef8260;
+                    }
+                    td:nth-child(9) {
+                        text-shadow: 0 0 2px #ba5e8a;
+                        color: #ba5e8a;
+                    }
+                    td:nth-child(10) {
+                        text-shadow: 0 0 2px #5dc273;
+                        color: #5dc273;
+                    }
+                    td:nth-child(11) {
+                        text-shadow: 0 0 2px #ec5050;
+                        color: #ec5050;
                     }
                 `}
             </style>
