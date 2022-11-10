@@ -22,42 +22,47 @@ const ChartPage = () => {
     if (setId !== 0 && mapDifficulty !== "") {
         if (Object.keys(mapsList).includes(setId) && ["easy", "advanced", "expert", "master"].includes(mapDifficulty))
             return (
-                <motion.main
-                    initial="hidden"
-                    animate="enter"
-                    exit="exit"
-                    variants={variants}
-                    transition={{ type: "linear" }}
-                    className="
+                <>
+                    <Head>
+                        <title>{`${mapsList[setId].mapArtist} - ${mapsList[setId].mapTitle} • Sl::dr Profile`}</title>
+                    </Head>
+                    <motion.main
+                        initial="hidden"
+                        animate="enter"
+                        exit="exit"
+                        variants={variants}
+                        transition={{ type: "linear" }}
+                        className="
                 flex flex-col items-start w-full pt-10
                 px-8 sm:px-16 md:px-36 lg:px-52 xl:px-80 2xl:px-96
                 pt-24 h-full
             "
-                >
-                    <div className="App">
-                        <ChartDetail
-                            setData={mapsList[setId]}
-                            mapDifficulty={mapsList[setId].mapDifficulties[mapDifficulty]}
-                            showReportPopup={showReportPopup}
-                            showDeletePopup={showDeletePopup}
-                            setShowReporPopup={setShowReportPopup}
-                            setShowDeletePopup={setShowDeletePopup}
-                        />
-                        <Leaderboard leaderboardList={mapsList[setId].mapLeaderboard} />
-                        <style jsx>
-                            {`
-                                .App {
-                                    display: flex;
-                                    flex-wrap: wrap;
-                                    align-content: flex-start;
+                    >
+                        <div className="App">
+                            <ChartDetail
+                                setData={mapsList[setId]}
+                                mapDifficulty={mapsList[setId].mapDifficulties[mapDifficulty]}
+                                showReportPopup={showReportPopup}
+                                showDeletePopup={showDeletePopup}
+                                setShowReporPopup={setShowReportPopup}
+                                setShowDeletePopup={setShowDeletePopup}
+                            />
+                            <Leaderboard leaderboardList={mapsList[setId].mapLeaderboard} />
+                            <style jsx>
+                                {`
+                                    .App {
+                                        display: flex;
+                                        flex-wrap: wrap;
+                                        align-content: flex-start;
 
-                                    gap: 20px 10px;
-                                }
-                            `}
-                        </style>
-                    </div>
-                    {showReportPopup ? <ReportPopup setShowReportPopup={setShowReportPopup}/> : ""}
-                </motion.main>
+                                        gap: 20px 10px;
+                                    }
+                                `}
+                            </style>
+                        </div>
+                        {showReportPopup ? <ReportPopup setShowReportPopup={setShowReportPopup} /> : ""}
+                    </motion.main>
+                </>
             );
         else {
             return (
