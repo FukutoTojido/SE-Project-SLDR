@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "../styles/Header.module.css";
 import { authorizedStatus } from "../pages/_app";
 
-const UserNav = () => {
+const UserNav = (props) => {
     const [showMenu, setShowMenu] = useState(false);
     const menu = useRef(null);
     const nav = useRef(null);
@@ -18,6 +18,9 @@ const UserNav = () => {
 
     useEffect(() => {
         document.addEventListener("mousedown", checkMenuState);
+        return () => {
+            document.removeEventListener("mousedown", checkMenuState);
+        };
     }, []);
 
     return (
@@ -59,7 +62,7 @@ const UserNav = () => {
                 .userNavContainer {
                     position: absolute;
                     right: 0;
-                    bottom: 25px;
+                    bottom: 10px;
 
                     width: 150px;
                     height: 50px;
@@ -91,7 +94,7 @@ const UserNav = () => {
 
                 .userMenu {
                     position: absolute;
-                    top: calc(100% + 5px);
+                    top: calc(100% + ${props.scrolled ? 15 : 5}px);
                     left: 0px;
 
                     width: 100%;
@@ -99,6 +102,8 @@ const UserNav = () => {
                     padding: 10px;
                     background-color: #151515;
                     border-radius: 10px;
+
+                    transition: ease-in-out 200ms;
                 }
 
                 .option {
@@ -106,12 +111,14 @@ const UserNav = () => {
                     padding: 5px 10px;
                     margin: 5px 0px;
 
+                    font-weight: 500;
+
                     user-select: none;
                     border-radius: 5px;
                 }
 
                 .option:hover {
-                    background-color: #363636;
+                    background-color: #404040;
                 }
 
                 .warning:hover {
@@ -125,21 +132,92 @@ const UserNav = () => {
 };
 
 const Header = () => {
+    const [scrollPos, setScrollPos] = useState(0);
+
+    useEffect(() => {
+        console.log(scrollPos);
+        const onScroll = (e) => {
+            // setScrollPos(e.target.documentElement.scrollTop);
+            setScrollPos(e.target.documentElement.scrollTop > scrollPos);
+        };
+        window.addEventListener("scroll", onScroll);
+
+        return () => window.removeEventListener("scroll", onScroll);
+    }, [scrollPos]);
+
     return (
-        <div className={styles.headerContainer}>
-            <div className={styles.headerLogo}></div>
-            <div className={styles.headerNav}>
-                <Link href="/" className={styles.navSelection}>
-                    home
-                </Link>
-                <Link href="/forum" className={styles.navSelection}>
-                    forum
-                </Link>
-                <Link href="/settings" className={styles.navSelection}>
-                    settings
-                </Link>
+        <div className="headerWrapper">
+            <div className="headerBackground"></div>
+            <div className={styles.headerContainer}>
+                <div className={styles.headerLogo}></div>
+                <div className={styles.headerNav}>
+                    <Link href="/" className={styles.navSelection}>
+                        home
+                    </Link>
+                    <Link href="/forum" className={styles.navSelection}>
+                        forum
+                    </Link>
+                    <Link href="/settings" className={styles.navSelection}>
+                        settings
+                    </Link>
+                    <div className="searchIcon">
+                        <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/search--v1.png" />
+                    </div>
+                </div>
+                {authorizedStatus.isAuthorized ? <UserNav scrolled={scrollPos} /> : <div className={styles.loginText}>login</div>}
             </div>
-            {authorizedStatus.isAuthorized ? <UserNav /> : <div className={styles.loginText}>login</div>}
+            <style jsx>
+                {`
+                    .headerWrapper {
+                        position: fixed;
+                        width: 100%;
+                        height: 70px;
+
+                        z-index: 999;
+                    }
+
+                    .headerBackground {
+                        position: fixed;
+                        width: 100%;
+                        height: 70px;
+
+                        opacity: ${scrollPos ? "100%" : 0};
+                        background: linear-gradient(0deg, rgb(0 0 0 /0.3), rgba(0 0 0 /0.3)), url("/static/default.png");
+                        box-shadow: 0 2px 5px ${scrollPos ? "rgb(0 0 0 /.5)" : "transparent"};
+
+                        transition: ease-in-out 200ms;
+                    }
+                    .searchIcon {
+                        position: relative;
+                        padding: 10px 0px;
+                        user-select: none;
+                    }
+                    .searchIcon img {
+                        width: 20px;
+                    }
+
+                    .searchIcon::after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+
+                        margin-inline: auto;
+
+                        width: 0%;
+                        height: 3px;
+
+                        background-color: white;
+                        border-radius: 3px;
+                        transition: ease-in-out 100ms;
+                    }
+
+                    .searchIcon:hover::after {
+                        width: 100%;
+                    }
+                `}
+            </style>
         </div>
     );
 };

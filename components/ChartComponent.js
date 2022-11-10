@@ -1,11 +1,64 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, useRef } from "react";
 import { Label } from "./BasicComponent";
 import Link from "next/link";
 
-const Menu = () => {
+const ReportPopup = (props) => {
+    const clickRef = useRef(null);
+
+    const checkMenuState = (e) => {
+        if (clickRef.current && !clickRef.current.contains(e.target)) props.setShowReportPopup(false);
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", checkMenuState);
+        return () => {
+            document.removeEventListener("mousedown", checkMenuState);
+        };
+    }, []);
+
+    return (
+        <div className="reportContainer">
+            <div className="popupContainer" ref={clickRef}></div>
+            <style jsx>
+                {`
+                    .reportContainer {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 100vh;
+                        background-color: #00000060;
+                        backdrop-filter: blur(5px);
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .popupContainer {
+                        width: 500px;
+                        height: 600px;
+
+                        background-color: #151515;
+                        border-radius: 20px;
+                    }
+                `}
+            </style>
+        </div>
+    );
+};
+
+const Menu = (props) => {
     return (
         <div className="menuContainer">
-            <div className="option">report problem</div>
+            <div
+                className="option"
+                onClick={() => {
+                    props.setShowReportPopup(!props.showReportPopup);
+                }}
+            >
+                report problem
+            </div>
             <div className="option warning">DELETE CHARTSET</div>
             <style jsx>{`
                 .menuContainer {
@@ -101,7 +154,7 @@ const ChartDetail = (props) => {
                         >
                             <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/more.png" />
                         </div>
-                        {showMenu ? <Menu /> : ""}
+                        {showMenu ? <Menu showReportPopup={props.showReportPopup} setShowReportPopup={props.setShowReporPopup} /> : ""}
                     </div>
                 </div>
                 <style jsx>
@@ -480,4 +533,4 @@ const Leaderboard = (props) => {
         </div>
     );
 };
-export { ChartDetail, Leaderboard };
+export { ChartDetail, Leaderboard, ReportPopup };

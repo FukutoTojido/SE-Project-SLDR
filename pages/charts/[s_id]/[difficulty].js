@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { Component, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { variants } from "../../_app";
-import { ChartDetail, Leaderboard } from "../../../components/ChartComponent";
+import { ChartDetail, Leaderboard, ReportPopup } from "../../../components/ChartComponent";
 import Head from "next/head";
 import { mapsList } from "../../_app";
 
@@ -10,6 +10,8 @@ const ChartPage = () => {
     const router = useRouter();
     const [setId, setSetId] = useState(0);
     const [mapDifficulty, setMapDifficulty] = useState("");
+    const [showReportPopup, setShowReportPopup] = useState(false);
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
 
     useEffect(() => {
         if (!router.isReady) return;
@@ -33,8 +35,15 @@ const ChartPage = () => {
             "
                 >
                     <div className="App">
-                        <ChartDetail setData={mapsList[setId]} mapDifficulty={mapsList[setId].mapDifficulties[mapDifficulty]} />
-                        <Leaderboard leaderboardList={mapsList[setId].mapLeaderboard}/>
+                        <ChartDetail
+                            setData={mapsList[setId]}
+                            mapDifficulty={mapsList[setId].mapDifficulties[mapDifficulty]}
+                            showReportPopup={showReportPopup}
+                            showDeletePopup={showDeletePopup}
+                            setShowReporPopup={setShowReportPopup}
+                            setShowDeletePopup={setShowDeletePopup}
+                        />
+                        <Leaderboard leaderboardList={mapsList[setId].mapLeaderboard} />
                         <style jsx>
                             {`
                                 .App {
@@ -47,6 +56,7 @@ const ChartPage = () => {
                             `}
                         </style>
                     </div>
+                    {showReportPopup ? <ReportPopup setShowReportPopup={setShowReportPopup}/> : ""}
                 </motion.main>
             );
         else {
