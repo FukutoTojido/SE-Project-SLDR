@@ -135,7 +135,7 @@ const Header = () => {
     const [scrollPos, setScrollPos] = useState(0);
 
     useEffect(() => {
-        console.log(scrollPos);
+        // console.log(scrollPos);
         const onScroll = (e) => {
             // setScrollPos(e.target.documentElement.scrollTop);
             setScrollPos(e.target.documentElement.scrollTop);
@@ -182,7 +182,7 @@ const Header = () => {
                         height: 70px;
 
                         opacity: ${Math.min(scrollPos / 35, 1)};
-                        background: linear-gradient(0deg, rgb(0 0 0 /0.3), rgba(0 0 0 /0.3)), url("/static/default.png");
+                        background: linear-gradient(0deg, rgb(0 0 0 /0.4), rgba(0 0 0 /0.4)), url("/static/default.png");
                         box-shadow: 0 2px 5px rgb(0 0 0 / ${Math.min(scrollPos / 35, 0.5)});
 
                         transition: ease-in-out 200ms;
