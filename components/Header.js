@@ -138,7 +138,7 @@ const Header = () => {
         console.log(scrollPos);
         const onScroll = (e) => {
             // setScrollPos(e.target.documentElement.scrollTop);
-            setScrollPos(e.target.documentElement.scrollTop > scrollPos);
+            setScrollPos(e.target.documentElement.scrollTop);
         };
         window.addEventListener("scroll", onScroll);
 
@@ -181,9 +181,9 @@ const Header = () => {
                         width: 100%;
                         height: 70px;
 
-                        opacity: ${scrollPos ? "100%" : 0};
+                        opacity: ${Math.min(scrollPos / 35, 1)};
                         background: linear-gradient(0deg, rgb(0 0 0 /0.3), rgba(0 0 0 /0.3)), url("/static/default.png");
-                        box-shadow: 0 2px 5px ${scrollPos ? "rgb(0 0 0 /.5)" : "transparent"};
+                        box-shadow: 0 2px 5px rgb(0 0 0 / ${Math.min(scrollPos / 35, 0.5)});
 
                         transition: ease-in-out 200ms;
                     }
