@@ -27,8 +27,8 @@ const ReportPopup = (props) => {
                         left: 0;
                         width: 100vw;
                         height: 100vh;
-                        background-color: #00000060;
-                        backdrop-filter: blur(5px);
+                        background-color: #00000040;
+                        backdrop-filter: blur(2px);
 
                         display: flex;
                         justify-content: center;
@@ -41,6 +41,8 @@ const ReportPopup = (props) => {
 
                         background-color: #151515;
                         border-radius: 20px;
+
+                        box-shadow: 0 5px 5px #151515;
                     }
                 `}
             </style>
@@ -414,17 +416,28 @@ const ChartDetail = (props) => {
 
 const Leaderboard = (props) => {
     const [leaderboardList, setLeaderboardList] = useState([]);
+    const [currentTime, setCurrentTime] = useState(new Date());
 
     useEffect(() => {
         setLeaderboardList(props.leaderboardList);
     }, [props.leaderboardList]);
 
+    useEffect(() => {
+        setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+    }, []);
+
     const getTimestamp = (unixTime) => {
         const timestamp = new Date(unixTime * 1000);
         const monthParse = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        return `${timestamp.getHours()}:${timestamp.getMinutes()} ${timestamp.getDate()}-${
-            monthParse[timestamp.getMonth()]
-        }-${timestamp.getFullYear()}`;
+
+        if (currentTime.getFullYear() - timestamp.getFullYear() > 0) return `${currentTime.getFullYear() - timestamp.getFullYear()}y`;
+        else if (currentTime.getMonth() - timestamp.getMonth() !== 0) return `${currentTime.getMonth() - timestamp.getMonth()}mo.`;
+        else if (currentTime.getDate() - timestamp.getDate() !== 0) return `${currentTime.getDate() - timestamp.getDate()}d`;
+        else if (currentTime.getHours() - timestamp.getHours() !== 0) return `${currentTime.getHours() - timestamp.getHours()}hrs.`;
+        else if (currentTime.getMinutes() - timestamp.getMinutes() !== 0) return `${currentTime.getMinutes() - timestamp.getMinutes()}min`;
+        else if (currentTime.getSeconds() - timestamp.getSeconds() !== 0) return `${currentTime.getSeconds() - timestamp.getSeconds()}s`;
     };
 
     return (
@@ -445,7 +458,7 @@ const Leaderboard = (props) => {
                             <th>great</th>
                             <th>ok</th>
                             <th>no</th>
-                            <th>play date</th>
+                            <th>play time</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -459,7 +472,7 @@ const Leaderboard = (props) => {
                                             <span>{play.playerName}</span>
                                         </Link>
                                     </td>
-                                    <td>{play.accuracy}</td>
+                                    <td className={play.rank}>{play.accuracy}</td>
                                     <td>{play.maxChain}x</td>
                                     <td>{play.maxFuse}</td>
                                     <td>{play.crit}</td>
@@ -530,7 +543,6 @@ const Leaderboard = (props) => {
                     }
 
                     tr td:last-child {
-                        width: 150px;
                         border-top-right-radius: 10px;
                         border-bottom-right-radius: 10px;
                     }
@@ -556,11 +568,18 @@ const Leaderboard = (props) => {
                         color: #d4a018;
                     }
 
-                    td.SSS {
+                    td:nth-child(2).SSS {
                         background: linear-gradient(90deg, #ebcb8b, #bf616a, #81a1c1);
                         background-size: 50%;
                         background-clip: text;
                         color: rgb(255 255 255 /0);
+                    }
+
+                    td:nth-child(4).SSS,
+                    td:nth-child(4).SS,
+                    td:nth-child(4).S {
+                        text-shadow: 0 0 2px #efbe60;
+                        color: #efbe60;
                     }
 
                     td:nth-child(7),
