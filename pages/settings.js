@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "../styles/Settings.module.css";
 import { motion } from "framer-motion";
+import { SettingPage } from "../components/SettingPage";
 
 const variants = {
     hidden: { opacity: 0, x: 0, y: 100 },
