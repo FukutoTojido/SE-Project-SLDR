@@ -91,6 +91,10 @@ function MyApp({ Component, pageProps }) {
                 break;
             }
             case "charts": {
+                if (pageData !== undefined && pageData.dataType === "charts" && pageData.mapId === parseInt(router.query.s_id)) {
+                    setPageData({ ...pageData, difficulty: router.query.difficulty });
+                    break;
+                }
                 getChartData(router.query.s_id);
                 break;
             }

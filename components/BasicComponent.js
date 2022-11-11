@@ -50,7 +50,7 @@ const LoadingAnimation = () => {
         <div className="App">
             <div className="loading">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="90px" height="90px">
-                    <circle cx="45" cy="45" r="30" stroke-linecap="round" />
+                    <circle cx="45" cy="45" r="30" strokeLinecap="round" />
                 </svg>
                 <style jsx>
                     {`
