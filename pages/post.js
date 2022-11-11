@@ -1,8 +1,13 @@
 import React, { Component } from "react";
-import styles from "../styles/Forum.module.css";
+import styles from "../styles/Post.module.css";
 import { motion } from "framer-motion";
-import { ForumContainer } from "../components/ForumComponent";
-import { variants } from "./_app";
+import Post from "../components/Post";
+
+const variants = {
+    hidden: { opacity: 0, x: 0, y: 100 },
+    enter: { opacity: 1, x: 0, y: 0 },
+    exit: { opacity: 0, x: 0, y: -100 },
+};
 
 class Forum extends Component {
     constructor(props) {
@@ -25,7 +30,8 @@ class Forum extends Component {
                   "
                 >
                     <div className="App">
-                        <ForumContainer/>
+                        <Post/>
+
                     </div>
                 </motion.main>
             </>
