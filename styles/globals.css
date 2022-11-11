@@ -2,42 +2,42 @@
 
 @font-face {
     font-family: Torus;
-    src: url("/fonts/Torus\ Light.woff");
+    src: url("/static/fonts/Torus\ Light.woff");
     font-weight: 200;
     font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
-    src: url("/fonts/Torus\ Thin.woff");
+    src: url("/static/fonts/Torus\ Thin.woff");
     font-weight: 300;
     font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
-    src: url("/fonts/Torus\ Regular.woff");
+    src: url("/static/fonts/Torus\ Regular.woff");
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
-    src: url("/fonts/Torus\ SemiBold.woff");
+    src: url("/static/fonts/Torus\ SemiBold.woff");
     font-weight: 500;
     font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
-    src: url("/fonts/Torus\ Bold.woff");
+    src: url("/static/fonts/Torus\ Bold.woff");
     font-weight: 700;
     font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
-    src: url("/fonts/Torus\ Heavy.woff");
+    src: url("/static/fonts/Torus\ Heavy.woff");
     font-weight: 800;
     font-display: swap;
 }
