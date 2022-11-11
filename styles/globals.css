@@ -1,45 +1,45 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700"); */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700");
 
 @font-face {
     font-family: Torus;
     src: url("/fonts/Torus\ Light.woff");
     font-weight: 200;
-    font-display: block;
+    font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
     src: url("/fonts/Torus\ Thin.woff");
     font-weight: 300;
-    font-display: block;
+    font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
     src: url("/fonts/Torus\ Regular.woff");
     font-weight: 400;
-    font-display: block;
+    font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
     src: url("/fonts/Torus\ SemiBold.woff");
     font-weight: 500;
-    font-display: block;
+    font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
     src: url("/fonts/Torus\ Bold.woff");
     font-weight: 700;
-    font-display: block;
+    font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
     src: url("/fonts/Torus\ Heavy.woff");
     font-weight: 800;
-    font-display: block;
+    font-display: swap;
 }
 
 html,
@@ -47,8 +47,7 @@ body {
     min-height: 100vh;
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Torus, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-        Helvetica Neue, sans-serif;
+    font-family: -apple-system, Torus, Quicksand, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     background-color: #121212;
 
     /* overflow-x: hidden; */
