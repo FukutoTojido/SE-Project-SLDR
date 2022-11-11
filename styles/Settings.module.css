@@ -87,16 +87,19 @@
 .editButton{
     width: 80px;
     height: 30px;
+    padding: 0px;
     font-family: 'Inter';
     background-color: #E3E3E3;
     margin-right: 15px;
     margin-left: auto;
-    border-color: #E3E3E3;
+    color: #474646;
+    border-color: #dad9d9;
     font-weight: 800;
     font-size: 18px;
     margin-top: auto;
     margin-bottom: auto;
-    border-style: groove
+    border-style: groove;
+    text-align: center;
 }
 
 .childfooter{
