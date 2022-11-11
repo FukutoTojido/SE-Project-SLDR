@@ -40,3 +40,6 @@
 .postGrid a:first-child {
     grid-column: 1 / 4;
 }
+.postGrid a:first-child > div{
+    height: 250px;
+}

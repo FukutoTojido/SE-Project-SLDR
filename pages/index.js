@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import Button from "../components/Button";
-import Post from "../components/Post";
+import Post from "../components/HomeComponent";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { motion } from "framer-motion";
