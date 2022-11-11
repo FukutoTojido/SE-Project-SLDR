@@ -7,6 +7,7 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { LoadingAnimation } from "../components/BasicComponent";
 
 const variants = {
     hidden: { opacity: 0, x: 0, y: 100 },
@@ -108,7 +109,7 @@ function MyApp({ Component, pageProps }) {
             <Header />
             <div className="AppContainer">
                 <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
-                    {pageData !== undefined ? <Component {...pageProps} data={pageData} /> : ""}
+                    {pageData !== undefined ? <Component {...pageProps} data={pageData} /> : <LoadingAnimation />}
                 </AnimatePresence>
                 <Footer />
             </div>
