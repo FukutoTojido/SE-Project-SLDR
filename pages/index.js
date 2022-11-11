@@ -56,7 +56,7 @@ const Home = () => {
                             <Label label="Changelogs" />
                             <div className="postWrapper">
                                 <div className={styles.postGrid}>
-                                    {postsLists.map((p, idx) => {
+                                    {postsLists.slice(0, 4).map((p, idx) => {
                                         return (
                                             <Link href="/forum" key={idx}>
                                                 <Post postInfo={p} />
