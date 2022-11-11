@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { variants } from "../../_app";
 import { ChartDetail, Leaderboard, ReportPopup } from "../../../components/ChartComponent";
 import Head from "next/head";
+import { LoadingAnimation } from "../../../components/BasicComponent";
 
 const ChartPage = (props) => {
     const [showReportPopup, setShowReportPopup] = useState(false);
@@ -88,6 +89,8 @@ const ChartPage = (props) => {
                 </div>
             );
         }
+    } else {
+        return <LoadingAnimation />;
     }
 };
 

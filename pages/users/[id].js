@@ -3,6 +3,7 @@ import { UserInfo, StatisticDetail, PinnedPlay, AboutMe, PlayHistory } from "../
 import { motion } from "framer-motion";
 import { variants } from "../_app";
 import Head from "next/head";
+import { LoadingAnimation } from "../../components/BasicComponent";
 
 const UserpageContent = (props) => {
     const [userData, setUserData] = useState(props.userData);
@@ -100,6 +101,8 @@ const Userpage = (props) => {
                     </div>
                 </div>
             );
+    } else {
+        return <LoadingAnimation />;
     }
 };
 
