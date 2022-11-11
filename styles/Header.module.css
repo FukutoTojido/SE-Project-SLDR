@@ -1,19 +1,19 @@
 .headerContainer {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     margin-inline: auto;
 
     width: 1000px;
-    height: 100px;
+    height: 70px;
 
     display: flex;
 }
 
 .headerLogo {
     position: absolute;
-    bottom: 30px;
+    bottom: 12px;
 
     aspect-ratio: 3 / 1;
     width: 140px;
@@ -24,7 +24,7 @@
 
 .headerNav {
     position: absolute;
-    bottom: 30px;
+    bottom: 10px;
     left: 170px;
 
     display: flex;
@@ -70,4 +70,25 @@
 }
 .userRating {
     font-size: 10px;
+}
+
+.loginText {
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+
+    width: 100px;
+
+    border-radius: 30px;
+    text-align: center;
+    font-size: 13px;
+
+    background-color: #242424;
+    padding: 10px;
+
+    user-select: none;
+}
+
+.loginText:hover {
+    background-color: #363636;
 }

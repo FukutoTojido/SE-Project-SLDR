@@ -1,21 +1,45 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700");
 
 @font-face {
     font-family: Torus;
-    src: url("https://osu.ppy.sh/assets/fonts/Torus-Regular.734ed3ae.otf");
+    src: url("/static/fonts/Torus\ Light.woff") format("woff");
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Torus;
+    src: url("/static/fonts/Torus\ Thin.woff") format("woff");
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Torus;
+    src: url("/static/fonts/Torus\ Regular.woff") format("woff");
     font-weight: 400;
+    font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
-    src: url("https://osu.ppy.sh/assets/fonts/Torus-SemiBold.d263d500.otf");
+    src: url("/static/fonts/Torus\ SemiBold.woff") format("woff");
     font-weight: 500;
+    font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
-    src: url("https://osu.ppy.sh/assets/fonts/Torus-Bold.c233ce17.otf");
+    src: url("/static/fonts/Torus\ Bold.woff") format("woff");
     font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Torus;
+    src: url("/static/fonts/Torus\ Heavy.woff") format("woff");
+    font-weight: 800;
+    font-display: swap;
 }
 
 html,
@@ -23,12 +47,13 @@ body {
     min-height: 100vh;
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Torus, Quicksand, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-        sans-serif;
+    font-family: -apple-system, Torus, Quicksand, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     background-color: #121212;
 
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     overflow-y: overlay;
+
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -38,6 +63,15 @@ a {
 
 * {
     box-sizing: border-box;
+}
+
+button {
+    padding: 0.5rem 0.5rem;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -69,10 +103,10 @@ a {
 
 .AppContainer {
     position: absolute;
-    top: 100px;
+    top: 80px;
 
     width: 100vw;
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 80px);
 
     display: flex;
     justify-content: center;
