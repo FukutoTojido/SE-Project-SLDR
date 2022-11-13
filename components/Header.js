@@ -157,9 +157,14 @@ const Header = () => {
                     <Link href="/forum" className={styles.navSelection}>
                         forum
                     </Link>
-                    <Link href="/settings" className={styles.navSelection}>
-                        settings
-                    </Link>
+                    {authorizedStatus.isAuthorized ? (
+                        <Link href="/settings" className={styles.navSelection}>
+                            settings
+                        </Link>
+                    ) : (
+                        ""
+                    )}
+
                     <div className="searchIcon">
                         <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/search--v1.png" />
                     </div>
