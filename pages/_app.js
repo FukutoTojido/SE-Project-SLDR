@@ -8,6 +8,7 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { LoadingAnimation } from "../components/BasicComponent";
 
 const variants = {
     hidden: { opacity: 0, x: 0, y: 100 },
@@ -20,21 +21,71 @@ const postsLists = [
         postTitle: "Sl::dr Update 11/2029",
         postAuthor: "Try-Z",
         postDate: 1888990656,
+        postVote: "+200",
+        postBannerURL: "/static/default.png",
     },
     {
         postTitle: "Sl::dr Update 10/2029",
         postAuthor: "Try-Z",
         postDate: 1886312256,
+        postVote: "+200",
+        postBannerURL: "/static/default.png",
     },
     {
         postTitle: "Sl::dr Update 9/2029",
         postAuthor: "Try-Z",
         postDate: 1883720256,
+        postVote: "+200",
+        postBannerURL: "/static/default.png",
     },
     {
         postTitle: "Sl::dr Update 8/2029",
         postAuthor: "Try-Z",
         postDate: 1881041856,
+        postVote: "+200",
+        postBannerURL: "/static/default.png",
+    },
+    {
+        postTitle: "Sl::dr Update 8/2029",
+        postAuthor: "Try-Z",
+        postDate: 1881041856,
+        postVote: "+200",
+        postBannerURL: "/static/default.png",
+    },
+    {
+        postTitle: "Sl::dr Update 8/2029",
+        postAuthor: "Try-Z",
+        postDate: 1881041856,
+        postVote: "+200",
+        postBannerURL: "/static/default.png",
+    },
+    {
+        postTitle: "Sl::dr Update 8/2029",
+        postAuthor: "Try-Z",
+        postDate: 1881041856,
+        postVote: "+200",
+        postBannerURL: "/static/default.png",
+    },
+    {
+        postTitle: "Sl::dr Update 8/2029",
+        postAuthor: "Try-Z",
+        postDate: 1881041856,
+        postVote: "+200",
+        postBannerURL: "/static/default.png",
+    },
+    {
+        postTitle: "Sl::dr Update 8/2029",
+        postAuthor: "Try-Z",
+        postDate: 1881041856,
+        postVote: "+200",
+        postBannerURL: "/static/default.png",
+    },
+    {
+        postTitle: "Sl::dr Update 8/2029",
+        postAuthor: "Try-Z",
+        postDate: 1881041856,
+        postVote: "+200",
+        postBannerURL: "/static/default.png",
     },
 ];
 const authorizedStatus = {
@@ -91,6 +142,10 @@ function MyApp({ Component, pageProps }) {
                 break;
             }
             case "charts": {
+                if (pageData !== undefined && pageData.dataType === "charts" && pageData.mapId === parseInt(router.query.s_id)) {
+                    setPageData({ ...pageData, difficulty: router.query.difficulty });
+                    break;
+                }
                 getChartData(router.query.s_id);
                 break;
             }

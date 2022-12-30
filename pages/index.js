@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import Button from "../components/Button";
-import Post from "../components/Post";
+import Post from "../components/HomeComponent";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -56,7 +56,7 @@ const Home = () => {
                             <Label label="Changelogs" />
                             <div className="postWrapper">
                                 <div className={styles.postGrid}>
-                                    {postsLists.map((p, idx) => {
+                                    {postsLists.slice(0, 4).map((p, idx) => {
                                         return (
                                             <Link href="/forum" key={idx}>
                                                 <Post postInfo={p} />

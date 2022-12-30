@@ -1,0 +1,141 @@
+.main {
+    width: 100%;
+    background-color: #151515;
+    border-radius: 20px;
+
+    padding: 30px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.changeInformationField {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    padding: 10px;
+    padding-left: 50px;
+    gap: 10px;
+}
+.inputLabel {
+    width: 200px;
+
+    font-weight: 500;
+    font-size: 13px;
+    text-align: right;
+
+    color: #999999;
+}
+.inputContainer {
+    width: 100%;
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.inputContainer > input {
+    width: 300px;
+    height: 40px;
+    background: #242424;
+
+    border: none;
+    border-radius: 5px;
+
+    padding: 10px;
+
+    color: white;
+    font-family: Torus;
+}
+
+.inputContainer > input:focus {
+    outline: solid 2px #999999;
+}
+
+.updateButton {
+    margin-left: 220px;
+    padding: 10px 20px;
+    background: #363636;
+    border-radius: 5px;
+
+    color: white;
+    font-size: 12px;
+    font-family: Torus;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.updateButton img {
+    width: 20px;
+}
+
+.updateButton:hover {
+    background-color: #696969;
+}
+
+.OTPimg {
+    width: 200px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.changeInformationField > h2 {
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 45px;
+    text-align: center;
+    color: #474646;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.changeInformationField > h3 {
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+    margin: 0px auto 0px auto;
+    color: #000000;
+    width: 700px;
+    padding: 10px;
+}
+.OTPButton {
+    margin-top: 10px;
+    width: 130px;
+    height: 40px;
+    background: #05277d;
+    align-self: center;
+    color: white;
+    font-size: 24px;
+    font-family: "Outfit";
+    font-style: normal;
+}
+.InsertOTP {
+    display: flex;
+    flex-direction: row;
+    row-gap: 10px;
+    justify-content: center;
+    padding: 10px;
+}
+.InsertOTP > input {
+    width: 120px;
+    height: 40px;
+    background: #d9d9d9;
+    margin: 0px 10px 0px 10px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    border-radius: 5px;
+    border-style: none;
+}

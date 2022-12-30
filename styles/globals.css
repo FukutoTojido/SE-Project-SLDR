@@ -2,44 +2,44 @@
 
 @font-face {
     font-family: Torus;
-    src: url("/fonts/Torus\ Light.otf");
+    src: url("/fonts/Torus-Light.woff") format("woff");
     font-weight: 200;
-    font-display: block;
+    font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
-    src: url("/fonts/Torus\ Thin.otf");
+    src: url("/fonts/Torus-Thin.woff") format("woff");
     font-weight: 300;
-    font-display: block;
+    font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
-    src: url("/fonts/Torus\ Regular.otf");
+    src: url("/fonts/Torus-Regular.woff") format("woff");
     font-weight: 400;
-    font-display: block;
+    font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
-    src: url("/fonts/Torus\ SemiBold.otf");
+    src: url("/fonts/Torus-SemiBold.woff") format("woff");
     font-weight: 500;
-    font-display: block;
+    font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
-    src: url("/fonts/Torus\ Bold.otf");
+    src: url("/fonts/Torus-Bold.woff") format("woff");
     font-weight: 700;
-    font-display: block;
+    font-display: swap;
 }
 
 @font-face {
     font-family: Torus;
-    src: url("/fonts/Torus\ Heavy.otf");
+    src: url("/fonts/Torus-Heavy.woff") format("woff");
     font-weight: 800;
-    font-display: block;
+    font-display: swap;
 }
 
 html,
@@ -47,14 +47,13 @@ body {
     min-height: 100vh;
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Torus, Quicksand, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-        Helvetica Neue, sans-serif;
+    font-family: -apple-system, Torus, Quicksand, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     background-color: #121212;
 
     /* overflow-x: hidden; */
     overflow-y: overlay;
 
-    /* -webkit-font-smoothing: antialiased; */
+    -webkit-font-smoothing: antialiased;
 }
 
 a {

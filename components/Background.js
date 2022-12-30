@@ -26,6 +26,8 @@ const Background = (props) => {
                     else setBackgroundURL("/static/default.png");
                 }
             }
+        } else {
+            setBackgroundURL("/static/default.png");
         }
 
         // if (authorizedStatus.isAuthorized) {

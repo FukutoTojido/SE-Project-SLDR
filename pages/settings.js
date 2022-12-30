@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import styles from "../styles/Settings.module.css";
 import { motion } from "framer-motion";
-import { variants } from "./_app";
+import { SettingPage } from "../components/SettingPage";
+import { Label } from "../components/BasicComponent";
+
+const variants = {
+    hidden: { opacity: 0, x: 0, y: 100 },
+    enter: { opacity: 1, x: 0, y: 0 },
+    exit: { opacity: 0, x: 0, y: -100 },
+};
 
 class Settings extends Component {
     constructor(props) {
@@ -23,7 +30,21 @@ class Settings extends Component {
                       pt-24 h-full
                   "
                 >
-                    <div className="App"></div>
+                    <div className="App">
+                        <Label label="Settings" />
+                        <SettingPage />
+
+                        <style jsx>
+                            {`
+                                .App {
+                                    display: flex;
+                                    align-content: flex-start;
+                                    flex-wrap: wrap;
+                                    gap: 10px;
+                                }
+                            `}
+                        </style>
+                    </div>
                 </motion.main>
             </>
         );
