@@ -1,12 +1,16 @@
-import React, { Component, useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Router, { useRouter } from "next/router";
 import styles from "../styles/Header.module.css";
+import { useAuth } from "../context/auth";
 import { authorizedStatus } from "../pages/_app";
 
 const UserNav = (props) => {
     const [showMenu, setShowMenu] = useState(false);
     const menu = useRef(null);
     const nav = useRef(null);
+    const router = useRouter()
+    const { auth, updateAuth } = useAuth()
 
     const checkMenuState = (e) => {
         if (menu.current && !menu.current.contains(e.target)) setShowMenu(false);
@@ -26,16 +30,16 @@ const UserNav = (props) => {
     return (
         <div className="userNavContainer">
             <div className="userNav" ref={nav}>
-                <img className={styles.userAvatar} src={`${authorizedStatus.authorizationInfo.userAvatarURL}`} alt="User Avatar" />
+                <img className={styles.userAvatar} src={`${auth?.userAvatarURL}`} alt="User Avatar" />
                 <div className={styles.userText}>
-                    <div className={styles.userName}>{authorizedStatus.authorizationInfo.userName}</div>
-                    <div className={styles.userRating}>rating: {authorizedStatus.authorizationInfo.userRating}</div>
+                    <div className={styles.userName}>{auth?.userName}</div>
+                    <div className={styles.userRating}>rating: {auth?.userRating}</div>
                 </div>
             </div>
 
             {showMenu ? (
                 <div className="userMenu" ref={menu}>
-                    <Link href={`/users/${authorizedStatus.authorizationInfo.userId}`}>
+                    <Link href={`/users/${auth?._id}`}>
                         <div
                             className="option"
                             onClick={() => {
@@ -49,6 +53,8 @@ const UserNav = (props) => {
                         className="option warning"
                         onClick={() => {
                             if (showMenu) setShowMenu(false);
+                            updateAuth({})    
+                            router.push('/')                        
                         }}
                     >
                         log out
@@ -79,7 +85,7 @@ const UserNav = (props) => {
                     align-items: center;
 
                     background-image: linear-gradient(0deg, rgb(0 0 0 /0.8), rgba(0 0 0 /0.8)),
-                        url(${authorizedStatus.authorizationInfo.userCoverURL});
+                        url(${auth?.userCoverURL});
                     background-size: cover;
                     border-radius: 10px;
 
@@ -88,7 +94,7 @@ const UserNav = (props) => {
 
                 .userNav:hover {
                     background-image: linear-gradient(90deg, rgb(0 0 0) 30%, rgba(0 0 0 /0.5)),
-                        url(${authorizedStatus.authorizationInfo.userCoverURL});
+                        url(${auth?.userCoverURL});
                     outline: solid 2px white;
                 }
 
@@ -133,6 +139,7 @@ const UserNav = (props) => {
 
 const Header = () => {
     const [scrollPos, setScrollPos] = useState(0);
+    const { auth } = useAuth()
 
     useEffect(() => {
         // console.log(scrollPos);
@@ -169,7 +176,13 @@ const Header = () => {
                         <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/search--v1.png" />
                     </div>
                 </div>
-                {authorizedStatus.isAuthorized ? <UserNav scrolled={scrollPos} /> : <div className={styles.loginText}>login</div>}
+                {
+                auth?.isAuthorized ? 
+                <UserNav scrolled={scrollPos} /> : 
+                <Link href='/login'>
+                    <div className={styles.loginText}>login</div>
+                </Link>
+                }
             </div>
             <style jsx>
                 {`

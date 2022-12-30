@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import Background from "../components/Background";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import AuthProvider from "../context/auth";
 import { AnimatePresence } from "framer-motion";
 import Head from "next/head";
 import { useState, useEffect } from "react";
@@ -156,17 +157,19 @@ function MyApp({ Component, pageProps }) {
 
     return (
         <>
-            <Head>
-                <title>Sl::dr website</title>
-            </Head>
-            <Background data={pageData} />
-            <Header />
-            <div className="AppContainer">
-                <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
-                    {pageData !== undefined ? <Component {...pageProps} data={pageData} /> : <LoadingAnimation />}
-                </AnimatePresence>
-                <Footer />
-            </div>
+            <AuthProvider>
+                <Head>
+                    <title>Sl::dr website</title>
+                </Head>
+                <Background data={pageData} />
+                <Header />
+                <div className="AppContainer">
+                    <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
+                        {pageData !== undefined ? <Component {...pageProps} data={pageData} /> : ""}
+                    </AnimatePresence>
+                    <Footer />
+                </div>
+            </AuthProvider>
         </>
     );
 }
