@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ShowChangeEmailField, ShowChangePasswordField, ChangeEmail } from "./SettingPageComponent";
+import { ShowChangeEmailField, ShowChangePasswordField, ChangeEmail, GameplayPreferences } from "./SettingPageComponent";
 import styles from "../styles/Settings.module.css";
 import { Label } from "./BasicComponent";
 
@@ -12,6 +12,7 @@ export function SettingPage() {
             {/* <ShowChangeEmailField /> */}
             <ChangeEmail />
             <Label label="gameplay preferences" />
+            <GameplayPreferences />
         </main>
     );
 }

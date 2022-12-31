@@ -22,7 +22,7 @@ const Background = (props) => {
                     break;
                 }
                 default: {
-                    if (authorizedStatus.isAuthorized) setBackgroundURL(authorizedStatus.authorizationInfo.userCoverURL);
+                    if (JSON.stringify(props.authData) !== "{}") setBackgroundURL(props.authData.userCoverURL);
                     else setBackgroundURL("/static/default.png");
                 }
             }
@@ -62,7 +62,7 @@ const Background = (props) => {
                         background-attachment: fixed;
                         background-size: cover;
 
-                        filter: blur(${authorizedStatus.isAuthorized ? "10px" : "0px"});
+                        filter: blur(10px);
                         z-index: 0;
                     }
                 `}

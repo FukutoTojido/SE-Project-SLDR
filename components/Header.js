@@ -3,14 +3,13 @@ import Link from "next/link";
 import Router, { useRouter } from "next/router";
 import styles from "../styles/Header.module.css";
 import { useAuth } from "../context/auth";
-import { authorizedStatus } from "../pages/_app";
+import { setCookie } from "cookies-next";
 
 const UserNav = (props) => {
     const [showMenu, setShowMenu] = useState(false);
     const menu = useRef(null);
     const nav = useRef(null);
-    const router = useRouter()
-    const { auth, updateAuth } = useAuth()
+    const router = useRouter();
 
     const checkMenuState = (e) => {
         if (menu.current && !menu.current.contains(e.target)) setShowMenu(false);
@@ -30,16 +29,16 @@ const UserNav = (props) => {
     return (
         <div className="userNavContainer">
             <div className="userNav" ref={nav}>
-                <img className={styles.userAvatar} src={`${auth?.userAvatarURL}`} alt="User Avatar" />
+                <img className={styles.userAvatar} src={`${props.auth.userAvatarURL}`} alt="User Avatar" />
                 <div className={styles.userText}>
-                    <div className={styles.userName}>{auth?.userName}</div>
-                    <div className={styles.userRating}>rating: {auth?.userRating}</div>
+                    <div className={styles.userName}>{props.auth.userName}</div>
+                    <div className={styles.userRating}>rating: {props.auth.userRating}</div>
                 </div>
             </div>
 
             {showMenu ? (
                 <div className="userMenu" ref={menu}>
-                    <Link href={`/users/${auth?._id}`}>
+                    <Link href={`/users/${props.auth.userId}`}>
                         <div
                             className="option"
                             onClick={() => {
@@ -53,8 +52,11 @@ const UserNav = (props) => {
                         className="option warning"
                         onClick={() => {
                             if (showMenu) setShowMenu(false);
-                            updateAuth({})    
-                            router.push('/')                        
+
+                            // updateAuth({});
+                            setCookie("authData", "{}");
+
+                            router.reload("/");
                         }}
                     >
                         log out
@@ -84,8 +86,7 @@ const UserNav = (props) => {
                     gap: 9px;
                     align-items: center;
 
-                    background-image: linear-gradient(0deg, rgb(0 0 0 /0.8), rgba(0 0 0 /0.8)),
-                        url(${auth?.userCoverURL});
+                    background-image: linear-gradient(0deg, rgb(0 0 0 /0.8), rgba(0 0 0 /0.8)), url(${props.auth.userCoverURL});
                     background-size: cover;
                     border-radius: 10px;
 
@@ -93,8 +94,7 @@ const UserNav = (props) => {
                 }
 
                 .userNav:hover {
-                    background-image: linear-gradient(90deg, rgb(0 0 0) 30%, rgba(0 0 0 /0.5)),
-                        url(${auth?.userCoverURL});
+                    background-image: linear-gradient(90deg, rgb(0 0 0) 30%, rgba(0 0 0 /0.5)), url(${props.auth.userCoverURL});
                     outline: solid 2px white;
                 }
 
@@ -137,9 +137,8 @@ const UserNav = (props) => {
     );
 };
 
-const Header = () => {
+const Header = (props) => {
     const [scrollPos, setScrollPos] = useState(0);
-    const { auth } = useAuth()
 
     useEffect(() => {
         // console.log(scrollPos);
@@ -164,7 +163,7 @@ const Header = () => {
                     <Link href="/forum" className={styles.navSelection}>
                         forum
                     </Link>
-                    {authorizedStatus.isAuthorized ? (
+                    {JSON.stringify(props.authData) !== "{}" ? (
                         <Link href="/settings" className={styles.navSelection}>
                             settings
                         </Link>
@@ -172,17 +171,17 @@ const Header = () => {
                         ""
                     )}
 
-                    <div className="searchIcon">
+                    {/* <div className="searchIcon">
                         <img src="https://img.icons8.com/ios-glyphs/90/FFFFFF/search--v1.png" />
-                    </div>
+                    </div> */}
                 </div>
-                {
-                auth?.isAuthorized ? 
-                <UserNav scrolled={scrollPos} /> : 
-                <Link href='/login'>
-                    <div className={styles.loginText}>login</div>
-                </Link>
-                }
+                {JSON.stringify(props.authData) !== "{}" ? (
+                    <UserNav scrolled={scrollPos} auth={props.authData}/>
+                ) : (
+                    <Link href="/login">
+                        <div className={styles.loginText}>login</div>
+                    </Link>
+                )}
             </div>
             <style jsx>
                 {`

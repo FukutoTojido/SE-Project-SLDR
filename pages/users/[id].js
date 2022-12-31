@@ -31,7 +31,7 @@ const UserpageContent = (props) => {
                     "
                 >
                     <div className="App">
-                        <UserInfo playerInfo={userData.userInfo} />
+                        <UserInfo playerInfo={userData.userInfo} authData={props.authData}/>
                         <div className="leftSection">
                             <StatisticDetail statisticDetail={userData.statisticDetail} />
                             <PinnedPlay pinnedPlay={userData.pinnedPlay} />
@@ -71,7 +71,7 @@ const Userpage = (props) => {
     });
 
     if (userData !== undefined) {
-        if (userData.userInfo !== undefined) return <UserpageContent userData={userData} />;
+        if (userData.userInfo !== undefined) return <UserpageContent userData={userData} authData={props.authData}/>;
         else
             return (
                 <div className="App">

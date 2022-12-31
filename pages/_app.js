@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { LoadingAnimation } from "../components/BasicComponent";
+import { getCookie, setCookie } from "cookies-next";
 
 const variants = {
     hidden: { opacity: 0, x: 0, y: 100 },
@@ -88,21 +89,15 @@ const postsLists = [
         postBannerURL: "/static/default.png",
     },
 ];
-const authorizedStatus = {
-    isAuthorized: true,
-    authorizationInfo: {
-        userId: 8266808,
-        userName: "skill issue",
-        userTitle: "Sl:dr World Cup 2029 Champion",
-        userRating: 19920,
-        userCoverURL: "/static/users/8266808.jpg",
-        userAvatarURL: "/static/avatars/8266808.png",
-    },
-};
+
+const rawAuthCookie = getCookie("authData");
 
 function MyApp({ Component, pageProps }) {
+    if (getCookie("authData") === undefined) setCookie("authData", "{}");
+
     const router = useRouter();
     const [pageData, setPageData] = useState(undefined);
+    const [authData, setAuthData] = useState({});
 
     const getUserData = async (userId) => {
         if (userId === undefined) return;
@@ -131,6 +126,11 @@ function MyApp({ Component, pageProps }) {
     };
 
     useEffect(() => {
+        if (!rawAuthCookie) return;
+        setAuthData(JSON.parse(rawAuthCookie));
+    }, []);
+
+    useEffect(() => {
         if (!router.isReady) return;
 
         const siteType = router.asPath.split("/")[1];
@@ -149,6 +149,9 @@ function MyApp({ Component, pageProps }) {
                 getChartData(router.query.s_id);
                 break;
             }
+            case "login": {
+                if (rawAuthCookie !== undefined && rawAuthCookie !== "{}") router.push("/");
+            }
             default: {
                 setPageData({ dataType: "others" });
             }
@@ -161,11 +164,11 @@ function MyApp({ Component, pageProps }) {
                 <Head>
                     <title>Sl::dr website</title>
                 </Head>
-                <Background data={pageData} />
-                <Header />
+                <Background data={pageData} authData={authData} />
+                <Header authData={authData} />
                 <div className="AppContainer">
                     <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
-                        {pageData !== undefined ? <Component {...pageProps} data={pageData} /> : ""}
+                        {pageData !== undefined ? <Component {...pageProps} data={pageData} authData={authData} /> : ""}
                     </AnimatePresence>
                     <Footer />
                 </div>
@@ -175,4 +178,4 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-export { variants, postsLists, authorizedStatus };
+export { variants, postsLists };

@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import styles from "../styles/Login.module.css";
 import { motion } from "framer-motion";
 import { variants } from "./_app";
-import LoginForm  from '../components/LoginForm'
+import LoginForm from "../components/LoginForm";
 
-
-function Login () {
-
+function Login() {
     return (
         <>
             <motion.main
@@ -23,11 +21,17 @@ function Login () {
             >
                 <div className="App">
                     <LoginForm />
+                    <style jsx>{`
+                        .App {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    `}</style>
                 </div>
             </motion.main>
         </>
     );
-    
 }
 
 export default Login;
