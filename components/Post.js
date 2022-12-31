@@ -1,186 +1,174 @@
-import React, {Component} from "react";
-import styles from "../styles/Post.module.css"
+import React, { Component } from "react";
+import styles from "../styles/Post.module.css";
+import presetHTML5 from "@bbob/preset-html5";
 import { useRouter } from "next/router";
-import { BsFillBookmarkStarFill } from "react-icons/bs";
-import { BsEmojiHeartEyes } from "react-icons/bs";
-import { AiFillDislike, AiFillLike } from "react-icons/ai";
-import Image from "next/image"
-import avatar from "../public/image/avatar/avatar.jpg"
-import picture from "../public/image/picture.jpg"
-
 
 //const router = useRouter();
 //const data = router.query;
 
-let CommentData = [
-    {
-        comment:"Yahhhhhhh..."
-    },
-    {
-        comment:"Hello, My Name is Huy :3"
-    },
-    {
-        comment:"Oh, Damn, Awesome"
-    },
-    {
-        comment:"How can it be Possible!!!"
-    },
-    {
-        comment:"Yahhhhhhh..."
-    },
-    {
-        comment:"Ulatr, Fantastic"
-    },
-
-
-];
-
-const PostTitle = () => {
-    return (
-        <>
-            <div className={styles.post_container}>
-                <div className={styles.post_title_context}>
-                    <div>
-                        <h1>Topic</h1>
-                        <p>Post by Author</p>
-                    </div>
-                    <div className={styles.post_title_container_bookmarks}>
-                        <BsFillBookmarkStarFill className={styles.post_bookmark} />
-                    </div>
-                </div>
-                
-            </div>
-        </>
-    )
+const topicData = {
+    topicTitle: "Sl:dr Update 12/2029",
+    topicStarter: "skill issue",
+    postList: [
+        {
+            postAuthor: "skill issue",
+            postAuthorAvatarURL: "/static/avatars/8266808.png",
+            postVotes: "+280",
+            postDate: "28/12/2029",
+            postContent: "Test #1",
+        },
+        {
+            postAuthor: "Trole",
+            postAuthorAvatarURL: "https://a.ppy.sh/10274874",
+            postVotes: "+280",
+            postDate: "28/12/2029",
+            postContent: "Test #2, longer than test #1. For font testing purpose.\nLooks so-so tbh",
+        },
+    ],
 };
 
-const PostContent = () => {
+const TopicTitle = () => {
     return (
-        <>
-            <div className={styles.content_container}>
-                <div className={styles.content_box}>
-                    <div className={styles.content_box_title}>
-                        <h2><i>Checkout the New</i></h2>
-                    </div>
-                    <div className={styles.content_box_context}>
-                        <p>The Context that we want...</p> 
-                    </div>
-                </div>
-            </div>
-        </>
-    )
-};
-const PictureContainer = () => {
-    return(
-        <>
-            <div className={styles.picture_container}>
-                <div style={{
-                    display: "flex",
-                    width: "100%",
-                    justifyContent: 'center',
-                    marginTop: "10px",
-                }}>
-                    <Image
-                        src={picture}
-                        style={{
-                            width: "600px",
-                            height: "350px",
-                            borderRadius: "20px",
-                            opacity: "0.8"
-
-                        }}
-                    />
-                </div>
-            </div>
-        </>
-    )
-}
-const Vote = () => {
-    return (
-        <>
-            <div className={styles.topicvote}>
-                <AiFillLike className={styles.vote_like} />
-                <AiFillDislike className={styles.vote_like} />
-            </div>
-        </>
-    )
-}
-const CommentBox = ({comment}) => {
-    return (
-        <>
-            <div className={styles.commentBox_container}>
-                <div className ={styles.avatar_comment}>
-                    <Image src={avatar} width={40} height={40} style={{ borderRadius: "20px",}} />
-                </div>
-                <p><i>{comment}</i></p>
-            </div>
-        </>
-    )
+        <div className={styles.topicHeader}>
+            <div className={styles.topicTitle}>Sl::dr Update 12/2022</div>
+            <div className={styles.topicAuthor}>started by </div>
+        </div>
+    );
 };
 
-const CommentEnter = () => {
+const UserPost = (props) => {
+    console.log(props);
     return (
-    <>
-            <form action="/database" method="POST">
-                    <input
-                    style={{
-                        marginTop: '25px',
-                        width: '600px',
-                        height: '40px',
-                        backgroundColor: 'rgba(0,0,0,0.4)',
-                        color: "white",
-                        borderRadius: '20px',
-                        padding:'20px',
-                        
-                    }}
-                    type="text"
-                    id="roll"
-                    name="roll"
-                    required 
-                    placeholder="Comment..."
-                />
-            </form>
-      
-    </>
-    )
-}
-
-const CommentContainer = () => {
-    return (
-        <>
-            <div className={styles.comment_all}>
-                <div className={styles.comment_container}>
-                    <h2>{<BsEmojiHeartEyes />} Comment Here {<BsEmojiHeartEyes />}</h2>        
-                </div>      
+        <div
+            className={styles.postContainer}
+            style={{
+                backgroundColor: props.postIdx === 0 ? "#282828" : "",
+            }}
+        >
+            <div className="postUserVote">
+                <div className="postUser">
+                    <div className="userAvatar" style={{ backgroundImage: `url('${props.data.postAuthorAvatarURL}')` }}></div>
+                    <div className="userName">{props.data.postAuthor}</div>
+                </div>
+                <div className="postVote">
+                    <div className="upvoteButton"></div>
+                    <div className="votesBalance">{props.data.postVotes}</div>
+                    <div className="downvoteButton"></div>
+                </div>
             </div>
-            <div className={styles.comment_box}>
-                {CommentData.map(p => <CommentBox comment={p.comment}/> )}  
+            <div className={`postDateContent`}>
+                <div className="postDate">posted on {props.data.postDate}</div>
+                <div className="postContent">{props.data.postContent}</div>
             </div>
-           <CommentEnter/>
-        </>
-    )
-}
+            <style jsx>{`
+                .postUserVote {
+                    width: 150px;
 
+                    background-color: #363636;
 
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-content: flex-start;
 
+                    box-shadow: 2px 0 10px -2px rgba(0 0 0 /0.4);
+                }
 
+                .postUser {
+                    width: 100%;
+
+                    padding: 20px;
+
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-content: flex-start;
+                    justify-content: center;
+                    gap: 10px;
+                }
+
+                .userAvatar {
+                    width: 100px;
+                    height: 100px;
+
+                    background-image: url("https://a.ppy.sh/8266808");
+                    background-size: cover;
+
+                    border-radius: 20px;
+                }
+
+                .userName {
+                    width: 100%;
+
+                    text-align: center;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+
+                .postVote {
+                    width: 100%;
+
+                    padding: 0 20px;
+
+                    display: flex;
+                    justify-content: center;
+                    gap: 20px;
+                }
+
+                .upvoteButton {
+                    width: 20px;
+                    height: 20px;
+
+                    background: url("https://img.icons8.com/ios-glyphs/30/999999/sort-up.png");
+                    background-size: cover;
+                }
+
+                .downvoteButton {
+                    width: 20px;
+                    height: 20px;
+
+                    background: url("https://img.icons8.com/ios-glyphs/30/999999/sort-up.png");
+                    background-size: cover;
+
+                    transform: rotate(180deg);
+                }
+
+                .postDateContent {
+                    width: calc(100% - 150px);
+                    height: 100%;
+
+                    padding: 20px;
+
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+
+                .postDate {
+                    width: 100%;
+
+                    font-size: 13px;
+                    color: #aaa;
+                    font-weight: 500;
+                }
+
+                .postContent {
+                    font-family: sans-serif;
+                    font-size: 15px;
+
+                    line-spacing: 1.5rem;
+                }
+            `}</style>
+        </div>
+    );
+};
 
 const Post = () => {
-    
     return (
-        <>
-            <div className={styles.container}>
-                <PostTitle />
-                <PostContent />  
-                <PictureContainer />
-                <Vote />
-            </div>
-            <div className={styles.container_comment}>
-                <CommentContainer />
-                
-            </div>
-        </>
-    )
-
-}
-export default Post 
+        <div className={styles.topicContainer}>
+            <TopicTitle />
+            {topicData.postList.map((p, idx) => (
+                <UserPost key={idx} data={p} postIdx={idx} />
+            ))}
+        </div>
+    );
+};
+export default Post;
