@@ -27,11 +27,13 @@ const topicData = {
     ],
 };
 
-const TopicTitle = () => {
+const TopicTitle = (props) => {
     return (
         <div className={styles.topicHeader}>
-            <div className={styles.topicTitle}>Sl::dr Update 12/2022</div>
-            <div className={styles.topicAuthor}>started by </div>
+            <div className={styles.topicTitle}>{props.data.topicTitle}</div>
+            <div className={styles.topicAuthor}>
+                started by <span>{props.data.topicStarter}</span>
+            </div>
         </div>
     );
 };
@@ -110,25 +112,44 @@ const UserPost = (props) => {
 
                     display: flex;
                     justify-content: center;
-                    gap: 20px;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                .upvoteButton, .downvoteButton {
+                    margin-top: 5px;
                 }
 
                 .upvoteButton {
                     width: 20px;
                     height: 20px;
 
-                    background: url("https://img.icons8.com/ios-glyphs/30/999999/sort-up.png");
+                    background-image: url("https://img.icons8.com/ios-glyphs/30/999999/sort-up.png");
                     background-size: cover;
+                }
+
+                .upvoteButton:hover {
+                    background-image: url("https://img.icons8.com/ios-glyphs/30/FF0000/sort-up.png");
+                    filter: hue-rotate(10deg) brightness(2) saturate(0.6);
                 }
 
                 .downvoteButton {
                     width: 20px;
                     height: 20px;
 
-                    background: url("https://img.icons8.com/ios-glyphs/30/999999/sort-up.png");
+                    background-image: url("https://img.icons8.com/ios-glyphs/30/999999/sort-up.png");
                     background-size: cover;
 
                     transform: rotate(180deg);
+                }
+
+                .downvoteButton:hover {
+                    background-image: url("https://img.icons8.com/ios-glyphs/30/FF0000/sort-up.png");
+                    filter: hue-rotate(250deg) brightness(2) saturate(0.6);
+                }
+
+                .votesBalance {
+                    font-size: 16px;
                 }
 
                 .postDateContent {
@@ -164,7 +185,7 @@ const UserPost = (props) => {
 const Post = () => {
     return (
         <div className={styles.topicContainer}>
-            <TopicTitle />
+            <TopicTitle data={topicData} />
             {topicData.postList.map((p, idx) => (
                 <UserPost key={idx} data={p} postIdx={idx} />
             ))}

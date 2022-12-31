@@ -21,6 +21,14 @@
     font-weight: 500;
 }
 
+.topicAuthor {
+    font-weight: 300;
+}
+
+.topicAuthor span {
+    font-weight: 500;
+}
+
 .postContainer {
     width: 100%;
     min-height: 250px;

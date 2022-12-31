@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import styles from "../styles/LoginForm.module.css";
 import { getCookies, setCookie } from "cookies-next";
+import { LoadingAnimation } from "./BasicComponent";
 
 const LoginForm = () => {
     const router = useRouter();
@@ -11,15 +12,18 @@ const LoginForm = () => {
     const { auth, updateAuth } = useAuth();
     const userRef = useRef();
     const passRef = useRef();
+    const [isLoading, setIsLoading] = useState(false);
 
     async function handleLogin(e) {
         e.preventDefault();
         if (userRef.current.value && passRef.current.value) {
+            setIsLoading(true);
             const res = await axios.post("api/v1/auth", {
                 username: userRef.current.value,
                 password: passRef.current.value,
             });
 
+            setIsLoading(false);
             setCookie("authData", JSON.stringify(res.data));
 
             if (JSON.stringify(res.data) !== "{}") {
@@ -37,7 +41,8 @@ const LoginForm = () => {
 
     return (
         <div className={styles.formBackground}>
-            <form className={styles.loginForm}>
+            {isLoading ? <LoadingAnimation /> : ""}
+            <form className={styles.loginForm} style={{ display: isLoading ? "none" : "" }}>
                 {/*
                 <button className={ styles.exitBtn} onClick={() => setIsOpen(false)}>
                     <CloseRoundedIcon />
